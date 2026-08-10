@@ -1,0 +1,27 @@
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+env/
+.env
+.DS_Store
+.ipynb_checkpoints/
+*.ipynb_checkpoints
+
+# Raw datasets
+data/raw/
+data/**/*.csv
+data/**/*.mat
+data/**/*.jpg
+data/**/*.jpeg
+data/**/*.png
+
+# Generated results and large model artifacts
+results/generated/
+*.pth
+*.pt
+*.pkl
+*.joblib
+
+# Local Streamlit state
+.streamlit/secrets.toml
