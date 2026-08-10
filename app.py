@@ -1,6 +1,5 @@
 from __future__ import annotations
 
-import json
 from pathlib import Path
 
 import pandas as pd
@@ -12,7 +11,6 @@ from inference.power_prediction import PowerPredictor, performance_deviation
 from utils.alerts import AssetSignals, alert_level, calculate_risk, health_score, recommendation
 
 st.set_page_config(page_title="SolarTwin AI", page_icon="☀️", layout="wide")
-
 st.markdown("# ☀️ SolarTwin AI")
 st.caption("AI-driven solar PV fault intelligence, performance monitoring, Digital Twin and predictive maintenance")
 
@@ -21,7 +19,7 @@ def model_available(directory: Path, required: list[str]) -> bool:
     return all((directory / name).exists() for name in required)
 
 
-m1_ready = model_available(MODEL1_DIR, ["v1_convnext_pvmd.pth", "class_names.json"])
+m1_ready = model_available(MODEL1_DIR, ["v2_convnext_pvmd_multilabel.pth", "class_names.json", "preprocessing.json"])
 m2_ready = model_available(MODEL2_DIR, ["v1_xgboost_degradation.pkl", "feature_columns.json"])
 m3_ready = model_available(MODEL3_DIR, ["v1_xgboost_power.pkl", "feature_columns.json"])
 
@@ -37,31 +35,38 @@ with st.sidebar:
 if page == "Dashboard":
     st.subheader("Asset Intelligence Dashboard")
     c1, c2, c3, c4 = st.columns(4)
-    c1.metric("Total Assets", "1,250", "Prototype")
-    c2.metric("Healthy", "1,080", "Prototype")
-    c3.metric("High Risk", "52", "Prototype")
-    c4.metric("Critical", "23", "Prototype")
-    st.info("Connect your asset registry and inference outputs to replace prototype dashboard numbers.")
+    c1.metric("Total Assets", "—")
+    c2.metric("Healthy", "—")
+    c3.metric("High Risk", "—")
+    c4.metric("Critical", "—")
+    st.info("Connect your asset registry and inference outputs to populate live asset counts. No fabricated production statistics are displayed.")
     st.markdown("### System architecture")
-    st.code("Model 1: Image → Fault\nModel 2: Electrical/Thermal → Degradation\nModel 3: Environment/Operations → Expected Power\n                 ↓\n        Alert / Risk Engine\n                 ↓\n           Digital Twin", language="text")
+    st.code("Model 1: Image → Multiple Anomalies\nModel 2: Electrical/Thermal → Degradation\nModel 3: Environment/Operations → Expected Power\n                 ↓\n        Alert / Risk Engine\n                 ↓\n           Digital Twin", language="text")
 
 elif page == "Fault Detection":
     st.subheader("🔍 Visual PV Fault Detection")
+    st.write("Model 1 is a multi-label anomaly detector: one image can produce multiple anomaly names and confidence scores.")
     uploaded = st.file_uploader("Upload a PV module image", type=["png", "jpg", "jpeg"])
     if not m1_ready:
-        st.warning("Model 1 is not trained yet. Run training/train_fault_detection.py and place the saved artifacts in models/fault_detection/.")
+        st.warning("Model 1 is not trained yet. Run training/train_model1_fault_detection.py and place the saved artifacts in models/fault_detection/.")
     if uploaded:
         from PIL import Image
         image = Image.open(uploaded)
         st.image(image, caption="Input PV image", width=500)
         if m1_ready and st.button("Run Fault Detection"):
             from inference.fault_detection import FaultDetector
-            detector = FaultDetector(MODEL1_DIR / "v1_convnext_pvmd.pth", MODEL1_DIR / "class_names.json")
+            detector = FaultDetector(MODEL1_DIR / "v2_convnext_pvmd_multilabel.pth", MODEL1_DIR / "class_names.json")
             result = detector.predict(image)
-            st.success(f"Prediction: {result['class']}")
-            st.metric("Confidence", f"{result['confidence']:.2f}%")
-            probs = pd.DataFrame({"Class": result["probabilities"].keys(), "Probability": result["probabilities"].values()})
-            st.plotly_chart(px.bar(probs, x="Class", y="Probability", range_y=[0, 100]), use_container_width=True)
+            if result["detected_anomalies"]:
+                st.error("🔴 DEFECTIVE / ANOMALY DETECTED")
+                st.markdown("### Detected anomalies")
+                for anomaly in result["detected_anomalies"]:
+                    st.write(f"• **{anomaly['name']}** — {anomaly['confidence']:.2f}%")
+            else:
+                st.warning("No trained anomaly crossed the detection threshold.")
+                st.caption(result["note"])
+            probs = pd.DataFrame({"Anomaly": result["probabilities"].keys(), "Probability": result["probabilities"].values()})
+            st.plotly_chart(px.bar(probs, x="Anomaly", y="Probability", range_y=[0, 100]), use_container_width=True)
 
 elif page == "Electrical Analysis":
     st.subheader("⚡ Electrical Performance Analysis")
@@ -96,8 +101,7 @@ elif page == "Power Prediction":
                     deviation = performance_deviation(expected, df[actual_col])
                     result = pd.DataFrame({"Expected Power": expected, "Actual Power": df[actual_col], "Deviation %": deviation})
                     st.dataframe(result.head(100), use_container_width=True)
-                    fig = px.line(result, y=["Expected Power", "Actual Power"], title="Actual vs Expected Power")
-                    st.plotly_chart(fig, use_container_width=True)
+                    st.plotly_chart(px.line(result, y=["Expected Power", "Actual Power"], title="Actual vs Expected Power"), use_container_width=True)
                     st.metric("Mean absolute deviation", f"{deviation.abs().mean():.2f}%")
             except Exception as exc:
                 st.error(str(exc))
@@ -131,11 +135,11 @@ elif page == "Digital Twin":
 elif page == "Model Testing Lab":
     st.subheader("🧪 Model Testing Lab")
     st.write("All external testing uses saved models without retraining. Ground truth is required for quantitative validation.")
-    st.markdown("**Model 1:** upload an external image-folder dataset and run `testing/test_fault_detection.py`.\n\n**Model 2:** upload a feature-compatible CSV and run `testing/test_degradation.py`.\n\n**Model 3:** upload a feature-compatible CSV and run `testing/test_power_prediction.py`.")
+    st.markdown("**Model 1:** external PV image folders are interpreted as multi-label annotations by collapsing exact duplicate hashes and unioning anomaly labels.\n\n**Model 2:** upload a feature-compatible CSV and run `testing/test_degradation.py`.\n\n**Model 3:** upload a feature-compatible CSV and run `testing/test_power_prediction.py`.")
 
 elif page == "Reports":
     st.subheader("📊 Reports")
-    st.info("Report generation will consume saved inference results. The first release provides the data and model interfaces needed to add PDF/CSV report generation without changing the model layer.")
+    st.info("Report generation will consume saved inference results. The model layer now returns structured multi-anomaly outputs for Model 1.")
 
 st.divider()
-st.caption("SolarTwin AI — research prototype. Risk thresholds are configurable prototype rules, not universal industrial standards.")
+st.caption("SolarTwin AI — research prototype. PVMD does not contain healthy examples, so Model 1 does not claim validated healthy-vs-defective accuracy.")
