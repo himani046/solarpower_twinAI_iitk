@@ -1,8 +1,4 @@
-"""Audit PVMD duplicates and the resulting multi-label combinations.
-
-Run before training to document how many raw files collapse into unique exact
-image groups and how labels combine across those groups.
-"""
+"""Audit PVMD duplicates and the resulting multi-label combinations."""
 from __future__ import annotations
 
 import argparse
@@ -32,39 +28,34 @@ def main() -> None:
 
     root = find_root(Path(args.data))
     groups = defaultdict(set)
+    counts = Counter()
     raw_files = 0
+
     for class_dir in root.iterdir():
         if not class_dir.is_dir():
             continue
         for path in class_dir.rglob("*"):
-            if path.is_file() and path.suffix.lower() in IMAGE_EXTS:
-                raw_files += 1
-                groups[hashlib.sha256(path.read_bytes()).hexdigest()].add(class_dir.name)
+            if not path.is_file() or path.suffix.lower() not in IMAGE_EXTS:
+                continue
+            raw_files += 1
+            digest = hashlib.sha256(path.read_bytes()).hexdigest()
+            groups[digest].add(class_dir.name)
+            counts[digest] += 1
 
-    combos = Counter(" + ".join(sorted(labels)) for labels in groups.values())
+    combinations = Counter(" + ".join(sorted(labels)) for labels in groups.values())
     result = {
         "root": str(root),
         "raw_files": raw_files,
         "unique_exact_images": len(groups),
-        "duplicate_groups": sum(len(labels) >= 1 for labels in groups.values()) - len(groups) if False else None,
+        "duplicate_groups": sum(1 for n in counts.values() if n > 1),
+        "files_in_duplicate_groups": sum(n for n in counts.values() if n > 1),
         "single_label_groups": sum(len(labels) == 1 for labels in groups.values()),
         "multi_label_groups": sum(len(labels) > 1 for labels in groups.values()),
-        "label_combinations": dict(combos),
+        "label_combinations": dict(combinations),
         "classes": sorted({label for labels in groups.values() for label in labels}),
         "healthy_class_available": False,
+        "interpretation": "Exact duplicate image hashes are collapsed and labels are unioned for multi-label training.",
     }
-    # The duplicate-group count is a file-level concept; compute it separately.
-    # We cannot infer the number of duplicate files from the label sets alone, so
-    # recompute the hash multiplicities once without retaining file paths.
-    counts = Counter()
-    for class_dir in root.iterdir():
-        if not class_dir.is_dir():
-            continue
-        for path in class_dir.rglob("*"):
-            if path.is_file() and path.suffix.lower() in IMAGE_EXTS:
-                counts[hashlib.sha256(path.read_bytes()).hexdigest()] += 1
-    result["duplicate_groups"] = sum(1 for n in counts.values() if n > 1)
-    result["files_in_duplicate_groups"] = sum(n for n in counts.values() if n > 1)
 
     out = Path(args.output)
     out.parent.mkdir(parents=True, exist_ok=True)
