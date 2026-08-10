@@ -1,0 +1,24 @@
+datasets:
+  model1_pvmd:
+    name: PVMD
+    kaggle_id: himani04012007/pvmd-dataset1
+    task: image_classification
+  model2_pv_mismatch:
+    name: PV Mismatch
+    kaggle_id: himani04012007/pv-mismatch
+    task: electrical_thermal_analysis
+  model3_solar_power:
+    name: Solar Power Generation Data
+    kaggle_id: anikannal/solar-power-generation-data
+    task: time_series_regression
+
+splits:
+  train_fraction: 0.80
+  test_fraction: 0.20
+  random_state: 42
+
+paths:
+  raw: data/raw
+  processed: data/processed
+  models: models
+  results: results
