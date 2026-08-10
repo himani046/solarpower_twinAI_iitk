@@ -8,7 +8,7 @@ env/
 .ipynb_checkpoints/
 *.ipynb_checkpoints
 
-# Raw datasets
+# Raw datasets (never commit these)
 data/raw/
 data/**/*.csv
 data/**/*.mat
@@ -16,8 +16,11 @@ data/**/*.jpg
 data/**/*.jpeg
 data/**/*.png
 
-# Generated results and large model artifacts
+# Generated reports
 results/generated/
+
+# Model artifacts are normally kept locally or in Git LFS.
+# Keep them out of ordinary Git commits unless intentionally tracked.
 *.pth
 *.pt
 *.pkl
