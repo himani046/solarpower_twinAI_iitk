@@ -1,0 +1,94 @@
+{
+  "skipped": [
+    {
+      "file": "/kaggle/input/pv-mismatch/Experimental data for Mismatching Faults of Photovoltaic Modules/RawData/M5_30112/ThermalData/PanelA_Clean.csv",
+      "label": "clean",
+      "error": "No usable numeric matrix: utf-8-sig: 'utf-8' codec can't decode byte 0xff in position 0: invalid start byte | utf-16: Error tokenizing data. C error: Expected 1 fields in line 5, saw 62\n | utf-16-le: Error tokenizing data. C error: Expected 1 fields in line 5, saw 62\n | cp1252: Error tokenizing data. C error: Expected 1 fields in line 9, saw 62\n | latin1: Error tokenizing data. C error: Expected 1 fields in line 9, saw 62\n"
+    },
+    {
+      "file": "/kaggle/input/pv-mismatch/Experimental data for Mismatching Faults of Photovoltaic Modules/RawData/M5_30112/ThermalData/PanelA_Dirt.csv",
+      "label": "dirt",
+      "error": "No usable numeric matrix: utf-8-sig: 'utf-8' codec can't decode byte 0xff in position 0: invalid start byte | utf-16: Error tokenizing data. C error: Expected 1 fields in line 5, saw 62\n | utf-16-le: Error tokenizing data. C error: Expected 1 fields in line 5, saw 62\n | cp1252: Error tokenizing data. C error: Expected 1 fields in line 9, saw 62\n | latin1: Error tokenizing data. C error: Expected 1 fields in line 9, saw 62\n"
+    },
+    {
+      "file": "/kaggle/input/pv-mismatch/Experimental data for Mismatching Faults of Photovoltaic Modules/RawData/M5_30112/ThermalData/PanelA_Shadow.csv",
+      "label": "shadow",
+      "error": "No usable numeric matrix: utf-8-sig: 'utf-8' codec can't decode byte 0xff in position 0: invalid start byte | utf-16: Error tokenizing data. C error: Expected 1 fields in line 5, saw 62\n | utf-16-le: Error tokenizing data. C error: Expected 1 fields in line 5, saw 62\n | cp1252: Error tokenizing data. C error: Expected 1 fields in line 9, saw 62\n | latin1: Error tokenizing data. C error: Expected 1 fields in line 9, saw 62\n"
+    },
+    {
+      "file": "/kaggle/input/pv-mismatch/Experimental data for Mismatching Faults of Photovoltaic Modules/RawData/M5_30112/ThermalData/PanelB_Clean.csv",
+      "label": "clean",
+      "error": "No usable numeric matrix: utf-8-sig: 'utf-8' codec can't decode byte 0xff in position 0: invalid start byte | utf-16: Error tokenizing data. C error: Expected 1 fields in line 5, saw 62\n | utf-16-le: Error tokenizing data. C error: Expected 1 fields in line 5, saw 62\n | cp1252: Error tokenizing data. C error: Expected 1 fields in line 9, saw 62\n | latin1: Error tokenizing data. C error: Expected 1 fields in line 9, saw 62\n"
+    },
+    {
+      "file": "/kaggle/input/pv-mismatch/Experimental data for Mismatching Faults of Photovoltaic Modules/RawData/M5_30112/ThermalData/PanelB_Dirt.csv",
+      "label": "dirt",
+      "error": "No usable numeric matrix: utf-8-sig: 'utf-8' codec can't decode byte 0xff in position 0: invalid start byte | utf-16: Error tokenizing data. C error: Expected 1 fields in line 5, saw 62\n | utf-16-le: Error tokenizing data. C error: Expected 1 fields in line 5, saw 62\n | cp1252: Error tokenizing data. C error: Expected 1 fields in line 9, saw 62\n | latin1: Error tokenizing data. C error: Expected 1 fields in line 9, saw 62\n"
+    },
+    {
+      "file": "/kaggle/input/pv-mismatch/Experimental data for Mismatching Faults of Photovoltaic Modules/RawData/M5_30112/ThermalData/PanelB_Shadow.csv",
+      "label": "shadow",
+      "error": "No usable numeric matrix: utf-8-sig: 'utf-8' codec can't decode byte 0xff in position 0: invalid start byte | utf-16: Error tokenizing data. C error: Expected 1 fields in line 5, saw 62\n | utf-16-le: Error tokenizing data. C error: Expected 1 fields in line 5, saw 62\n | cp1252: Error tokenizing data. C error: Expected 1 fields in line 9, saw 62\n | latin1: Error tokenizing data. C error: Expected 1 fields in line 9, saw 62\n"
+    },
+    {
+      "file": "/kaggle/input/pv-mismatch/Experimental data for Mismatching Faults of Photovoltaic Modules/RawData/M5_30112/ThermalData/PanelC_Clean.csv",
+      "label": "clean",
+      "error": "No usable numeric matrix: utf-8-sig: 'utf-8' codec can't decode byte 0xff in position 0: invalid start byte | utf-16: Error tokenizing data. C error: Expected 1 fields in line 5, saw 62\n | utf-16-le: Error tokenizing data. C error: Expected 1 fields in line 5, saw 62\n | cp1252: Error tokenizing data. C error: Expected 1 fields in line 9, saw 62\n | latin1: Error tokenizing data. C error: Expected 1 fields in line 9, saw 62\n"
+    },
+    {
+      "file": "/kaggle/input/pv-mismatch/Experimental data for Mismatching Faults of Photovoltaic Modules/RawData/M5_30112/ThermalData/PanelC_Dirt.csv",
+      "label": "dirt",
+      "error": "No usable numeric matrix: utf-8-sig: 'utf-8' codec can't decode byte 0xff in position 0: invalid start byte | utf-16: Error tokenizing data. C error: Expected 1 fields in line 5, saw 62\n | utf-16-le: Error tokenizing data. C error: Expected 1 fields in line 5, saw 62\n | cp1252: Error tokenizing data. C error: Expected 1 fields in line 9, saw 62\n | latin1: Error tokenizing data. C error: Expected 1 fields in line 9, saw 62\n"
+    },
+    {
+      "file": "/kaggle/input/pv-mismatch/Experimental data for Mismatching Faults of Photovoltaic Modules/RawData/M5_30112/ThermalData/PanelC_Shadow.csv",
+      "label": "shadow",
+      "error": "No usable numeric matrix: utf-8-sig: 'utf-8' codec can't decode byte 0xff in position 0: invalid start byte | utf-16: Error tokenizing data. C error: Expected 1 fields in line 5, saw 62\n | utf-16-le: Error tokenizing data. C error: Expected 1 fields in line 5, saw 62\n | cp1252: Error tokenizing data. C error: Expected 1 fields in line 9, saw 62\n | latin1: Error tokenizing data. C error: Expected 1 fields in line 9, saw 62\n"
+    },
+    {
+      "file": "/kaggle/input/pv-mismatch/Experimental data for Mismatching Faults of Photovoltaic Modules/RawData/SP090P/ThermalData/Panel1_Clean.csv",
+      "label": "clean",
+      "error": "No usable numeric matrix: utf-8-sig: 'utf-8' codec can't decode byte 0xff in position 0: invalid start byte | utf-16: Error tokenizing data. C error: Expected 1 fields in line 5, saw 62\n | utf-16-le: Error tokenizing data. C error: Expected 1 fields in line 5, saw 62\n | cp1252: Error tokenizing data. C error: Expected 1 fields in line 9, saw 62\n | latin1: Error tokenizing data. C error: Expected 1 fields in line 9, saw 62\n"
+    },
+    {
+      "file": "/kaggle/input/pv-mismatch/Experimental data for Mismatching Faults of Photovoltaic Modules/RawData/SP090P/ThermalData/Panel1_Dirt.csv",
+      "label": "dirt",
+      "error": "No usable numeric matrix: utf-8-sig: 'utf-8' codec can't decode byte 0xff in position 0: invalid start byte | utf-16: Error tokenizing data. C error: Expected 1 fields in line 5, saw 62\n | utf-16-le: Error tokenizing data. C error: Expected 1 fields in line 5, saw 62\n | cp1252: Error tokenizing data. C error: Expected 1 fields in line 9, saw 62\n | latin1: Error tokenizing data. C error: Expected 1 fields in line 9, saw 62\n"
+    },
+    {
+      "file": "/kaggle/input/pv-mismatch/Experimental data for Mismatching Faults of Photovoltaic Modules/RawData/SP090P/ThermalData/Panel1_Shadow.csv",
+      "label": "shadow",
+      "error": "No usable numeric matrix: utf-8-sig: 'utf-8' codec can't decode byte 0xff in position 0: invalid start byte | utf-16: Error tokenizing data. C error: Expected 1 fields in line 5, saw 62\n | utf-16-le: Error tokenizing data. C error: Expected 1 fields in line 5, saw 62\n | cp1252: Error tokenizing data. C error: Expected 1 fields in line 9, saw 62\n | latin1: Error tokenizing data. C error: Expected 1 fields in line 9, saw 62\n"
+    },
+    {
+      "file": "/kaggle/input/pv-mismatch/Experimental data for Mismatching Faults of Photovoltaic Modules/RawData/SP090P/ThermalData/Panel2_Clean.csv",
+      "label": "clean",
+      "error": "No usable numeric matrix: utf-8-sig: 'utf-8' codec can't decode byte 0xff in position 0: invalid start byte | utf-16: Error tokenizing data. C error: Expected 1 fields in line 5, saw 62\n | utf-16-le: Error tokenizing data. C error: Expected 1 fields in line 5, saw 62\n | cp1252: Error tokenizing data. C error: Expected 1 fields in line 9, saw 62\n | latin1: Error tokenizing data. C error: Expected 1 fields in line 9, saw 62\n"
+    },
+    {
+      "file": "/kaggle/input/pv-mismatch/Experimental data for Mismatching Faults of Photovoltaic Modules/RawData/SP090P/ThermalData/Panel2_Dirt.csv",
+      "label": "dirt",
+      "error": "No usable numeric matrix: utf-8-sig: 'utf-8' codec can't decode byte 0xff in position 0: invalid start byte | utf-16: Error tokenizing data. C error: Expected 1 fields in line 5, saw 62\n | utf-16-le: Error tokenizing data. C error: Expected 1 fields in line 5, saw 62\n | cp1252: Error tokenizing data. C error: Expected 1 fields in line 9, saw 62\n | latin1: Error tokenizing data. C error: Expected 1 fields in line 9, saw 62\n"
+    },
+    {
+      "file": "/kaggle/input/pv-mismatch/Experimental data for Mismatching Faults of Photovoltaic Modules/RawData/SP090P/ThermalData/Panel2_Shadow.csv",
+      "label": "shadow",
+      "error": "No usable numeric matrix: utf-8-sig: 'utf-8' codec can't decode byte 0xff in position 0: invalid start byte | utf-16: Error tokenizing data. C error: Expected 1 fields in line 5, saw 62\n | utf-16-le: Error tokenizing data. C error: Expected 1 fields in line 5, saw 62\n | cp1252: Error tokenizing data. C error: Expected 1 fields in line 9, saw 62\n | latin1: Error tokenizing data. C error: Expected 1 fields in line 9, saw 62\n"
+    },
+    {
+      "file": "/kaggle/input/pv-mismatch/Experimental data for Mismatching Faults of Photovoltaic Modules/RawData/SP090P/ThermalData/Panel3_Clean.csv",
+      "label": "clean",
+      "error": "No usable numeric matrix: utf-8-sig: 'utf-8' codec can't decode byte 0xff in position 0: invalid start byte | utf-16: Error tokenizing data. C error: Expected 1 fields in line 5, saw 62\n | utf-16-le: Error tokenizing data. C error: Expected 1 fields in line 5, saw 62\n | cp1252: Error tokenizing data. C error: Expected 1 fields in line 9, saw 62\n | latin1: Error tokenizing data. C error: Expected 1 fields in line 9, saw 62\n"
+    },
+    {
+      "file": "/kaggle/input/pv-mismatch/Experimental data for Mismatching Faults of Photovoltaic Modules/RawData/SP090P/ThermalData/Panel3_Dirt.csv",
+      "label": "dirt",
+      "error": "No usable numeric matrix: utf-8-sig: 'utf-8' codec can't decode byte 0xff in position 0: invalid start byte | utf-16: Error tokenizing data. C error: Expected 1 fields in line 5, saw 62\n | utf-16-le: Error tokenizing data. C error: Expected 1 fields in line 5, saw 62\n | cp1252: Error tokenizing data. C error: Expected 1 fields in line 9, saw 62\n | latin1: Error tokenizing data. C error: Expected 1 fields in line 9, saw 62\n"
+    },
+    {
+      "file": "/kaggle/input/pv-mismatch/Experimental data for Mismatching Faults of Photovoltaic Modules/RawData/SP090P/ThermalData/Panel3_Shadow.csv",
+      "label": "shadow",
+      "error": "No usable numeric matrix: utf-8-sig: 'utf-8' codec can't decode byte 0xff in position 0: invalid start byte | utf-16: Error tokenizing data. C error: Expected 1 fields in line 5, saw 62\n | utf-16-le: Error tokenizing data. C error: Expected 1 fields in line 5, saw 62\n | cp1252: Error tokenizing data. C error: Expected 1 fields in line 9, saw 62\n | latin1: Error tokenizing data. C error: Expected 1 fields in line 9, saw 62\n"
+    }
+  ]
+}

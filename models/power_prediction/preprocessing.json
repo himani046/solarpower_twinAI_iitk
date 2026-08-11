@@ -1,0 +1,18 @@
+{
+  "numeric_medians": {
+    "AMBIENT_TEMPERATURE": 24.87909953333333,
+    "MODULE_TEMPERATURE": 25.027827933333327,
+    "IRRADIATION": 0.0331407035,
+    "hour": 11.0,
+    "minute": 15.0,
+    "day_of_week": 3.0,
+    "day_of_year": 150.0,
+    "month": 5.0,
+    "hour_sin": 1.2246467991473532e-16,
+    "hour_cos": -0.06540312923014273,
+    "day_sin": 0.5322271388474397,
+    "day_cos": -0.8466016020976267
+  },
+  "dc_power_excluded": true,
+  "daylight_irradiation_threshold": 20
+}

@@ -1,0 +1,19 @@
+source,true_label,oof_healthy_defective_probability,oof_predicted_healthy_defective,oof_predicted_fault_type,risk
+/kaggle/input/pv-mismatch/Experimental data for Mismatching Faults of Photovoltaic Modules/ProcessedData/M5_30112/ThermalData/PanelA_Clean.csv,Clean,0.7891208039369726,Defective,Shadow,60.98647719748853
+/kaggle/input/pv-mismatch/Experimental data for Mismatching Faults of Photovoltaic Modules/ProcessedData/M5_30112/ThermalData/PanelA_Dirt.csv,Dirt,0.6933615363313602,Defective,Shadow,76.11633147130155
+/kaggle/input/pv-mismatch/Experimental data for Mismatching Faults of Photovoltaic Modules/ProcessedData/M5_30112/ThermalData/PanelA_Shadow.csv,Shadow,0.3242174392947656,Healthy,Clean,60.86505290067041
+/kaggle/input/pv-mismatch/Experimental data for Mismatching Faults of Photovoltaic Modules/ProcessedData/M5_30112/ThermalData/PanelB_Clean.csv,Clean,0.7096487323034436,Defective,Dirt,0.0
+/kaggle/input/pv-mismatch/Experimental data for Mismatching Faults of Photovoltaic Modules/ProcessedData/M5_30112/ThermalData/PanelB_Dirt.csv,Dirt,0.6339319019237708,Defective,Dirt,8.23093419945283
+/kaggle/input/pv-mismatch/Experimental data for Mismatching Faults of Photovoltaic Modules/ProcessedData/M5_30112/ThermalData/PanelB_Shadow.csv,Shadow,0.5542422955773202,Defective,Dirt,15.17000744171122
+/kaggle/input/pv-mismatch/Experimental data for Mismatching Faults of Photovoltaic Modules/ProcessedData/M5_30112/ThermalData/PanelC_Clean.csv,Clean,0.7116433103777157,Defective,Dirt,10.73452415461816
+/kaggle/input/pv-mismatch/Experimental data for Mismatching Faults of Photovoltaic Modules/ProcessedData/M5_30112/ThermalData/PanelC_Dirt.csv,Dirt,0.3837750875705483,Healthy,Clean,59.82903562424444
+/kaggle/input/pv-mismatch/Experimental data for Mismatching Faults of Photovoltaic Modules/ProcessedData/M5_30112/ThermalData/PanelC_Shadow.csv,Shadow,0.18813887024013132,Healthy,Clean,12.994244989555284
+/kaggle/input/pv-mismatch/Experimental data for Mismatching Faults of Photovoltaic Modules/ProcessedData/SP090P/ThermalData/Panel1_Clean.csv,Clean,0.9059098518900618,Defective,Dirt,98.95875307483963
+/kaggle/input/pv-mismatch/Experimental data for Mismatching Faults of Photovoltaic Modules/ProcessedData/SP090P/ThermalData/Panel1_Dirt.csv,Dirt,0.412854911450397,Healthy,Shadow,100.0
+/kaggle/input/pv-mismatch/Experimental data for Mismatching Faults of Photovoltaic Modules/ProcessedData/SP090P/ThermalData/Panel1_Shadow.csv,Shadow,0.2609981507010527,Healthy,Clean,90.92123305944367
+/kaggle/input/pv-mismatch/Experimental data for Mismatching Faults of Photovoltaic Modules/ProcessedData/SP090P/ThermalData/Panel2_Clean.csv,Clean,0.29493864632626243,Healthy,Clean,30.638556422549378
+/kaggle/input/pv-mismatch/Experimental data for Mismatching Faults of Photovoltaic Modules/ProcessedData/SP090P/ThermalData/Panel2_Dirt.csv,Dirt,0.1307994232814041,Healthy,Clean,56.338744812692234
+/kaggle/input/pv-mismatch/Experimental data for Mismatching Faults of Photovoltaic Modules/ProcessedData/SP090P/ThermalData/Panel2_Shadow.csv,Shadow,0.6238910206244584,Defective,Dirt,36.571784994195845
+/kaggle/input/pv-mismatch/Experimental data for Mismatching Faults of Photovoltaic Modules/ProcessedData/SP090P/ThermalData/Panel3_Clean.csv,Clean,0.4191675407241984,Healthy,Clean,27.974457804364246
+/kaggle/input/pv-mismatch/Experimental data for Mismatching Faults of Photovoltaic Modules/ProcessedData/SP090P/ThermalData/Panel3_Dirt.csv,Dirt,0.5072102754530733,Defective,Shadow,48.386581337030684
+/kaggle/input/pv-mismatch/Experimental data for Mismatching Faults of Photovoltaic Modules/ProcessedData/SP090P/ThermalData/Panel3_Shadow.csv,Shadow,0.6319017599161414,Defective,Dirt,21.46896552968524

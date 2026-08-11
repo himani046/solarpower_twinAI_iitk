@@ -1,0 +1,120 @@
+{
+  "task": "whole_panel_thermal_anomaly_detection",
+  "dataset": "himani04012007/pv-mismatch",
+  "total_csv_files_found": 36,
+  "decoded_labelled_files": 18,
+  "skipped_files": 18,
+  "independent_samples": 18,
+  "features_per_panel": 28,
+  "evaluation": "leave-one-source-file-out OOF",
+  "healthy_defective": {
+    "accuracy": 0.4444444444444444,
+    "balanced_accuracy": 0.41666666666666663,
+    "precision": 0.6,
+    "recall": 0.5,
+    "f1": 0.5454545454545454,
+    "roc_auc": 0.20833333333333334,
+    "pr_auc": 0.533146741602624,
+    "confusion_matrix": [
+      [
+        2,
+        4
+      ],
+      [
+        6,
+        6
+      ]
+    ],
+    "classification_report": {
+      "Healthy": {
+        "precision": 0.25,
+        "recall": 0.3333333333333333,
+        "f1-score": 0.2857142857142857,
+        "support": 6.0
+      },
+      "Defective": {
+        "precision": 0.6,
+        "recall": 0.5,
+        "f1-score": 0.5454545454545454,
+        "support": 12.0
+      },
+      "accuracy": 0.4444444444444444,
+      "macro avg": {
+        "precision": 0.425,
+        "recall": 0.41666666666666663,
+        "f1-score": 0.41558441558441556,
+        "support": 18.0
+      },
+      "weighted avg": {
+        "precision": 0.4833333333333333,
+        "recall": 0.4444444444444444,
+        "f1-score": 0.4588744588744588,
+        "support": 18.0
+      }
+    }
+  },
+  "fault_type": {
+    "accuracy": 0.16666666666666666,
+    "balanced_accuracy": 0.16666666666666666,
+    "precision_macro": 0.14285714285714285,
+    "recall_macro": 0.16666666666666666,
+    "f1_macro": 0.15384615384615385,
+    "confusion_matrix": [
+      [
+        2,
+        3,
+        1
+      ],
+      [
+        2,
+        1,
+        3
+      ],
+      [
+        3,
+        3,
+        0
+      ]
+    ],
+    "classification_report": {
+      "Clean": {
+        "precision": 0.2857142857142857,
+        "recall": 0.3333333333333333,
+        "f1-score": 0.3076923076923077,
+        "support": 6.0
+      },
+      "Dirt": {
+        "precision": 0.14285714285714285,
+        "recall": 0.16666666666666666,
+        "f1-score": 0.15384615384615385,
+        "support": 6.0
+      },
+      "Shadow": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1-score": 0.0,
+        "support": 6.0
+      },
+      "accuracy": 0.16666666666666666,
+      "macro avg": {
+        "precision": 0.14285714285714285,
+        "recall": 0.16666666666666666,
+        "f1-score": 0.15384615384615385,
+        "support": 18.0
+      },
+      "weighted avg": {
+        "precision": 0.14285714285714285,
+        "recall": 0.16666666666666666,
+        "f1-score": 0.15384615384615385,
+        "support": 18.0
+      }
+    }
+  },
+  "risk": {
+    "mean": 45.343649167435736,
+    "median": 42.479183165613264,
+    "p95": 99.11494011361368,
+    "flag_rate_at_50": 0.4444444444444444
+  },
+  "warning": "Only the currently decoded labelled source files are available; metrics are exploratory and must not be presented as production validation."
+}

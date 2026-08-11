@@ -1,0 +1,16 @@
+{
+  "features": [
+    "AMBIENT_TEMPERATURE",
+    "MODULE_TEMPERATURE",
+    "IRRADIATION",
+    "hour",
+    "minute",
+    "day_of_week",
+    "day_of_year",
+    "month",
+    "hour_sin",
+    "hour_cos",
+    "day_sin",
+    "day_cos"
+  ]
+}

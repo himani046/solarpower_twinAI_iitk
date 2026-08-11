@@ -1,0 +1,47 @@
+{
+  "task": "expected_ac_power_prediction",
+  "dataset": "anikannal/solar-power-generation-data",
+  "generation_file": "/kaggle/input/solar-power-generation-data/Plant_1_Generation_Data.csv",
+  "weather_file": "/kaggle/input/solar-power-generation-data/Plant_1_Weather_Sensor_Data.csv",
+  "features": [
+    "AMBIENT_TEMPERATURE",
+    "MODULE_TEMPERATURE",
+    "IRRADIATION",
+    "hour",
+    "minute",
+    "day_of_week",
+    "day_of_year",
+    "month",
+    "hour_sin",
+    "hour_cos",
+    "day_sin",
+    "day_cos"
+  ],
+  "dc_power_excluded": true,
+  "train_rows": 55022,
+  "test_rows": 13756,
+  "daylight_test_rows": 0,
+  "split": "chronological 80:20",
+  "model": {
+    "MAE": 18.751147668228864,
+    "MSE": 2871.8637924856134,
+    "RMSE": 53.589773208006896,
+    "R2": 0.9785610008355745,
+    "MAPE_percent_nonzero_actual": 7.084732448155709,
+    "MedianAbsoluteError": 1.8524359464645386,
+    "ExplainedVariance": 0.9788669551789453,
+    "MaxError": 1255.210205078125
+  },
+  "daylight_only": {},
+  "naive_train_mean_baseline": {
+    "MAE": 327.30632497726066,
+    "MSE": 134926.7550037365,
+    "RMSE": 367.32377407913106,
+    "R2": -0.007253406429872156,
+    "MAPE_percent_nonzero_actual": 333.76784903792213,
+    "MedianAbsoluteError": 314.037132642524,
+    "ExplainedVariance": 0.0,
+    "MaxError": 1096.912867357476
+  },
+  "note": "Weather file is matched to the generation plant when possible. Median imputation is fit on training data only. DC_POWER is excluded to avoid direct target leakage. Daylight uses IRRADIATION > 20."
+}
