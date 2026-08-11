@@ -2,46 +2,44 @@
 
 ## 1. Independent model development
 
-The project deliberately keeps the three datasets and models independent because their records are not paired.
+The project keeps the three datasets and models independent because their records are not paired.
 
 ### Model 1 — Multi-label visual PV anomaly detection
 
 PVMD images → exact-image audit/grouping → multi-label target construction → image preprocessing → ConvNeXt-Tiny → independent sigmoid anomaly probabilities → detected anomaly names/confidence → Alert Engine.
 
-The current PVMD copy contains anomaly folders only (`Cracks`, `Hotspots`, `Shadings`) and no healthy class. Therefore Model 1 can identify trained anomaly types, but it does **not** claim validated healthy-vs-defective performance. A future healthy reference dataset is required for that binary capability.
+The current production Model 1 remains the validated PVMD ConvNeXt-Tiny checkpoint already stored in Git LFS. It predicts the trained anomaly labels `Cracks`, `Hotspots`, and `Shadings`; multiple labels may be returned for one image.
 
-The project audit found exact duplicate image bytes across multiple anomaly folders. The current research pipeline collapses identical image bytes into one sample and takes the union of the folder labels. This prevents the same image from being treated as three contradictory single-class training examples and allows the model to represent multiple anomalies for one image. This is a dataset-derived engineering convention and should be verified against the dataset's original annotation metadata if available.
+### Model 2 — Electrical / thermal anomaly and degradation-risk detection
 
-The Model 1 test split is performed at the unique-image-group level to prevent exact duplicate leakage between train and test.
+PV Mismatch electrical/thermal measurements → numeric feature cleaning → StandardScaler → Isolation Forest → anomaly score → normalized 0–100 degradation risk → Alert Engine.
 
-### Model 2 — Electrical performance degradation
+Model 2 is intentionally unsupervised because the configured PV Mismatch dataset does not provide a validated degradation target in the repository. The pipeline therefore does not invent a target or report classification accuracy/F1 without ground truth. A future labeled site dataset can be used to calibrate and evaluate the risk score.
 
-PV Mismatch electrical/thermal measurements → validated feature extraction → XGBoost → degradation/risk output → SHAP.
+### Model 3 — Expected solar power prediction
 
-The exact target must be established from the real dataset schema; no synthetic degradation label should be invented.
+Solar generation + weather time series → timestamp features + validated environmental/electrical predictors → chronological 80:20 split → XGBoost Regressor → expected AC power.
 
-### Model 3 — Solar power prediction
+The current Model 3 target is `AC_POWER`. `DC_POWER`, irradiation, module temperature, ambient temperature, and temporal features are eligible predictors. `AC_POWER` itself and cumulative yield fields are excluded from the predictors to prevent direct target leakage.
 
-Solar time series → timestamp features and validated environmental/operational features → chronological 80:20 split → XGBoost Regressor → expected power.
-
-Expected and actual power can be compared using:
+Expected and actual power are compared using:
 
 `deviation_percent = (expected - actual) / abs(expected) * 100`
 
-## 2. Evaluation
+### Combined system
 
-Every model has an untouched 20% internal test set. Model 1 uses unique exact-image groups, Model 3 uses chronological splitting, and validation is performed only inside the 80% training portion. External datasets are evaluated only after the saved model has been tested internally, and external evaluation is not considered quantitative validation without ground truth.
+Model 1 supplies visual fault evidence, Model 2 supplies electrical/thermal anomaly risk, and Model 3 supplies expected-power deviation. These outputs are combined only after independent inference by the configurable Alert/Risk Engine.
 
-## 3. Application integration
-
-The model outputs are combined only after inference by a configurable Alert/Risk Engine. The prototype risk score is:
+The prototype risk score remains:
 
 `0.30 * fault_risk + 0.40 * degradation_risk + 0.30 * power_deviation_risk`
 
-The result is converted to a 0–100 health score and alert level. These thresholds are engineering-prototype rules and must be calibrated with real site data before operational deployment.
+These weights and alert thresholds are engineering-prototype rules and must be calibrated with real site data before operational deployment.
 
-For Model 1, multiple detected anomalies can contribute to fault severity; the UI displays each detected anomaly and its confidence rather than selecting only one class.
+## 2. Evaluation
 
-## 4. Digital Twin
+Model 1 uses its unique-image-group test protocol. Model 2 is unsupervised and is evaluated through held-out anomaly-score/risk distributions unless validated labels become available. Model 3 uses a chronological 80:20 split so future observations are not used to train the expected-power model.
 
-The Digital Twin is the application representation of a PV asset. It stores/displays model-derived state such as multiple fault/anomaly names, degradation, expected power, actual power, deviation, risk, health and maintenance status. It is not a fourth ML model.
+## 3. Digital Twin
+
+The Digital Twin is the application representation of a PV asset. It stores/displays model-derived state such as anomaly names, degradation risk, expected power, actual power, deviation, health, risk, alert level, and maintenance status. It is not a fourth ML model.

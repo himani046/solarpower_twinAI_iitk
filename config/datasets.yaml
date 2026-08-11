@@ -9,14 +9,21 @@ datasets:
   model2_pv_mismatch:
     name: PV Mismatch
     kaggle_id: himani04012007/pv-mismatch
-    task: electrical_thermal_analysis
+    task: unsupervised_electrical_thermal_anomaly_detection
+    target: none
+    model: IsolationForest
+    output: degradation_risk_0_100
   model3_solar_power:
     name: Solar Power Generation Data
     kaggle_id: anikannal/solar-power-generation-data
-    task: time_series_regression
+    task: expected_ac_power_prediction
+    target: AC_POWER
+    model: XGBRegressor
+    split: chronological_80_20
 
 splits:
   train_fraction: 0.80
+  validation_fraction: 0.0
   test_fraction: 0.20
   random_state: 42
 
