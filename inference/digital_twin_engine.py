@@ -1,7 +1,14 @@
 from __future__ import annotations
 from pathlib import Path
-from model1_visual_fault import Model1VisualFault
-from model3_power_prediction import Model3PowerPrediction
+
+# Package-safe imports when called as inference.digital_twin_engine,
+# with a fallback for direct execution from the inference directory.
+try:
+    from .model1_visual_fault import Model1VisualFault
+    from .model3_power_prediction import Model3PowerPrediction
+except ImportError:
+    from model1_visual_fault import Model1VisualFault
+    from model3_power_prediction import Model3PowerPrediction
 
 ROOT=Path(__file__).resolve().parents[1]
 
@@ -10,9 +17,11 @@ class DigitalTwinEngine:
     def __init__(self, use_model1=True, use_model3=True):
         self.model1=Model1VisualFault() if use_model1 and (ROOT/"models/fault_detection/v2_convnext_pvmd_multilabel.pth").exists() else None
         self.model3=Model3PowerPrediction() if use_model3 and (ROOT/"models/power_prediction/v3_xgboost_power_no_dc.pkl").exists() else None
+
     def analyze(self, panel_id, image_path=None, power=None, timestamp=None, ambient_temperature=None, module_temperature=None, irradiation=None, model2_risk=None):
         visual=None
-        if self.model1 and image_path: visual=self.model1.predict(image_path)
+        if self.model1 and image_path:
+            visual=self.model1.predict(image_path)
         power_state=None
         if self.model3 and timestamp is not None and ambient_temperature is not None and module_temperature is not None and irradiation is not None:
             power_state=self.model3.predict(timestamp,ambient_temperature,module_temperature,irradiation)
