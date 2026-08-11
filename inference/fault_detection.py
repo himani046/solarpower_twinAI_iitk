@@ -7,15 +7,16 @@ import torch
 from PIL import Image
 from torchvision import models, transforms
 
+from utils.model1_alerts import build_model1_alert
+
 
 class FaultDetector:
     """Multi-label ConvNeXt PV anomaly detector.
 
-    The model independently estimates Crack, Hotspot and Shading probabilities.
     Each anomaly has its own validation-selected threshold, so one image can
-    report multiple anomalies. PVMD does not contain healthy examples; therefore
-    a low-probability result is reported as "NO_TRAINED_ANOMALY_DETECTED" rather
-    than a validated healthy classification.
+    report multiple anomalies. The alert layer converts detections into an
+    inspection priority. PVMD does not contain healthy examples; therefore a
+    low-probability result is not presented as a validated healthy result.
     """
 
     def __init__(
@@ -49,9 +50,11 @@ class FaultDetector:
             self.model.load_state_dict(state)
             saved_threshold = 0.5
 
-        # Prefer explicit thresholds, then the repository calibration file,
-        # then the checkpoint's legacy scalar threshold.
-        calibrated_path = Path(thresholds_path) if thresholds_path else Path("config/model1_thresholds.json")
+        calibrated_path = (
+            Path(thresholds_path)
+            if thresholds_path
+            else Path("config/model1_thresholds.json")
+        )
         calibrated = None
         if calibrated_path.exists():
             try:
@@ -112,6 +115,8 @@ class FaultDetector:
             if scores[name] >= self.thresholds[name] * 100.0
         ]
 
+        alert = build_model1_alert(detected)
+
         return {
             "status": "DEFECTIVE" if detected else "NO_TRAINED_ANOMALY_DETECTED",
             "detected_anomalies": detected,
@@ -120,6 +125,7 @@ class FaultDetector:
                 name: value * 100.0
                 for name, value in self.thresholds.items()
             },
+            "alert": alert,
             "healthy_class_available": False,
             "note": "PVMD contains anomaly classes only; healthy-vs-defective performance is not validated without healthy reference data.",
         }
