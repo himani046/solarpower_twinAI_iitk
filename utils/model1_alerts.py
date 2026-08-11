@@ -2,7 +2,7 @@
 
 This is an application-layer prototype, not a safety certification or
 engineering protection system. It converts multi-label anomaly predictions
-into a simple inspection priority while preserving the anomaly names and
+into an inspection priority while preserving the anomaly names and
 confidence values.
 """
 from __future__ import annotations
@@ -31,14 +31,14 @@ def build_model1_alert(detected_anomalies: list[dict]) -> dict:
     max_confidence = _clamp(anomalies[0]["confidence"])
     count = len(anomalies)
 
-    # Prototype inspection-priority rules. These are intentionally separate
-    # from model thresholds: a low calibrated detection threshold can identify
-    # a possible anomaly without immediately creating a critical alert.
+    # These are application-level inspection-priority rules, separate from
+    # the calibrated model thresholds. A low-probability detection should not
+    # automatically become a critical worker alert.
     if (count >= 2 and max_confidence >= 80.0) or max_confidence >= 95.0:
         level = "CRITICAL"
         label = "Critical inspection required"
         recommendation = "Multiple/high-confidence anomalies detected. Prioritize field inspection, isolate the affected asset if required by site procedures, and follow electrical safety procedures."
-    elif count >= 2 or max_confidence >= 60.0:
+    elif max_confidence >= 60.0 or (count >= 2 and max_confidence >= 40.0):
         level = "HIGH_RISK"
         label = "High-risk anomaly detected"
         recommendation = "Prioritize inspection and maintenance review. Check the affected module/string and correlate with electrical and power-performance signals."
