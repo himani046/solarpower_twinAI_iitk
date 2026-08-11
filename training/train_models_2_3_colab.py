@@ -1,22 +1,12 @@
 """Train SolarTwin AI Models 2 and 3 in one Colab run.
 
-Model 2
--------
-Electrical/thermal anomaly detection. The PV-Mismatch CSV is often headerless,
-so the loader detects and preserves numeric first rows instead of accidentally
-turning the first observation into column names. If a validated target column is
-present, a supervised classifier is trained and accuracy/precision/recall/F1,
-ROC-AUC, PR-AUC and a confusion matrix are reported. Otherwise the model remains
-Isolation Forest and reports only valid unsupervised diagnostics (no invented
-accuracy/F1).
+Model 2: unsupervised electrical/thermal anomaly detection because the current
+PV-Mismatch dataset exposes no validated target column. No fabricated accuracy
+or F1 metrics are reported.
 
-Model 3
--------
-Expected AC-power regression with a chronological split. DC_POWER is deliberately
-excluded from the final predictor set so the model does not get an almost-direct
-proxy for AC_POWER. Complete regression metrics and diagnostic plots are saved.
-
-Raw datasets are downloaded from Kaggle but never committed to Git.
+Model 3: expected AC-power regression with a chronological 80:20 split. DC_POWER
+is excluded to avoid a near-direct target proxy. Complete regression metrics and
+diagnostic plots are saved.
 """
 from __future__ import annotations
 
@@ -29,23 +19,13 @@ import joblib
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
-from sklearn.ensemble import IsolationForest, RandomForestClassifier
+from sklearn.ensemble import IsolationForest
 from sklearn.metrics import (
-    accuracy_score,
-    average_precision_score,
-    balanced_accuracy_score,
-    classification_report,
-    confusion_matrix,
     explained_variance_score,
-    f1_score,
     mean_absolute_error,
-    mean_absolute_percentage_error,
     mean_squared_error,
     median_absolute_error,
-    precision_score,
-    recall_score,
     r2_score,
-    roc_auc_score,
     max_error,
 )
 from sklearn.model_selection import train_test_split
@@ -77,25 +57,22 @@ def write_json(path: Path, payload: dict) -> None:
 
 
 def read_csv_robust(path: Path) -> pd.DataFrame:
-    """Read normal CSVs and headerless numeric CSVs without losing row 1."""
     normal = pd.read_csv(path)
-    # If every header is numeric-looking (e.g. 0.0, 0.0.1, ...), the source is
-    # probably headerless and pandas consumed the first observation as a header.
-    numeric_header_count = 0
+    numeric_header_like = 0
     for c in normal.columns:
         try:
-            float(str(c).replace(".1", ""))
-            numeric_header_count += 1
+            float(str(c))
+            numeric_header_like += 1
         except Exception:
             pass
-    if len(normal.columns) >= 2 and numeric_header_count / len(normal.columns) > 0.8:
+    if len(normal.columns) >= 2 and numeric_header_like / len(normal.columns) > 0.8:
         raw = pd.read_csv(path, header=None)
         raw.columns = [f"feature_{i}" for i in range(raw.shape[1])]
         return raw
     return normal
 
 
-def load_all_csvs(root: Path) -> tuple[pd.DataFrame, list[dict]]:
+def load_model2_csv(root: Path) -> tuple[pd.DataFrame, list[dict]]:
     files = sorted(root.rglob("*.csv"))
     if not files:
         raise FileNotFoundError(f"No CSV files found under {root}")
@@ -113,33 +90,12 @@ def load_all_csvs(root: Path) -> tuple[pd.DataFrame, list[dict]]:
     return pd.concat(frames, ignore_index=True, sort=False), schema
 
 
-def find_label_column(df: pd.DataFrame) -> str | None:
-    names = {str(c).strip().lower(): c for c in df.columns}
-    exact = ["label", "target", "class", "fault", "fault_label", "anomaly", "status", "condition", "healthy", "mismatch"]
-    for key in exact:
-        if key in names:
-            c = names[key]
-            if 2 <= df[c].nunique(dropna=True) <= max(20, int(len(df) * 0.1)):
-                return c
-    for c in df.columns:
-        name = str(c).lower()
-        if any(k in name for k in ["label", "target", "class", "fault", "anomaly", "condition"]):
-            if 2 <= df[c].nunique(dropna=True) <= max(20, int(len(df) * 0.1)):
-                return c
-    return None
-
-
 def train_model2(root: Path) -> dict:
     print("\n================ MODEL 2: ELECTRICAL ANOMALY DETECTOR ================")
-    df, schema = load_all_csvs(root)
+    df, schema = load_model2_csv(root)
     write_json(RESULTS / "model2" / "schema_report.json", {"dataset": MODEL2_KAGGLE, "files": schema})
     print(f"Rows loaded: {len(df)} | Columns: {len(df.columns)}")
 
-    label_col = find_label_column(df)
-    if label_col is not None:
-        return train_model2_supervised(df, label_col)
-
-    print("No validated target column detected -> using Isolation Forest.")
     numeric = df.select_dtypes(include="number").copy()
     if numeric.empty:
         raise RuntimeError("Model 2 dataset has no numeric measurements.")
@@ -151,10 +107,7 @@ def train_model2(root: Path) -> dict:
     if numeric.shape[1] < 2:
         raise RuntimeError("Not enough usable numeric features for Model 2.")
 
-    # Random holdout is used here because this dataset is not a chronological
-    # time-series target; it avoids the artificial distribution jump caused by
-    # putting all late observations into the test set.
-    train, test = train_test_split(numeric, test_size=0.20, random_state=SEED)
+    train, test = train_test_split(numeric, test_size=0.20, random_state=SEED, shuffle=True)
     scaler = StandardScaler()
     x_train = scaler.fit_transform(train)
     x_test = scaler.transform(test)
@@ -167,8 +120,6 @@ def train_model2(root: Path) -> dict:
     denom = max(hi - lo, 1e-9)
     train_risk = np.clip((train_raw - lo) / denom * 100.0, 0, 100)
     test_risk = np.clip((test_raw - lo) / denom * 100.0, 0, 100)
-    train_flag = (train_risk >= 50).astype(int)
-    test_flag = (test_risk >= 50).astype(int)
 
     MODEL2_DIR.mkdir(parents=True, exist_ok=True)
     joblib.dump(model, MODEL2_DIR / "v2_isolation_forest.pkl")
@@ -189,8 +140,8 @@ def train_model2(root: Path) -> dict:
         "features": list(numeric.columns),
         "train_rows": int(len(train)),
         "test_rows": int(len(test)),
-        "train_flag_rate": float(train_flag.mean()),
-        "test_flag_rate": float(test_flag.mean()),
+        "train_flag_rate_at_50": float(np.mean(train_risk >= 50.0)),
+        "test_flag_rate_at_50": float(np.mean(test_risk >= 50.0)),
         "train_mean_risk": float(train_risk.mean()),
         "test_mean_risk": float(test_risk.mean()),
         "test_median_risk": float(np.median(test_risk)),
@@ -205,53 +156,6 @@ def train_model2(root: Path) -> dict:
         "confusion_matrix": None,
         "note": "No validated target exists in this dataset; classification metrics are intentionally null rather than fabricated.",
     }
-    write_json(RESULTS / "model2" / "metrics.json", metrics)
-    print(json.dumps(metrics, indent=2))
-    return metrics
-
-
-def train_model2_supervised(df: pd.DataFrame, label_col: str) -> dict:
-    """Fallback supervised branch when a real target is present."""
-    print(f"Validated-looking target detected: {label_col}")
-    y = df[label_col].copy()
-    valid = y.notna()
-    df = df.loc[valid].copy()
-    y = y.loc[valid]
-    if y.dtype == object:
-        classes, y_encoded = np.unique(y.astype(str), return_inverse=True)
-    else:
-        classes = np.unique(y)
-        mapping = {v: i for i, v in enumerate(classes)}
-        y_encoded = y.map(mapping).to_numpy()
-    if len(classes) != 2:
-        raise RuntimeError(f"Detected target '{label_col}' is not binary; refusing to invent a binary anomaly target.")
-    X = df.drop(columns=[label_col]).select_dtypes(include="number").replace([np.inf, -np.inf], np.nan)
-    X = X.dropna(axis=1, how="all").fillna(X.median(numeric_only=True)).dropna(axis=1, how="any")
-    X_train, X_test, y_train, y_test = train_test_split(X, y_encoded, test_size=0.20, random_state=SEED, stratify=y_encoded)
-    model = RandomForestClassifier(n_estimators=400, class_weight="balanced", random_state=SEED, n_jobs=-1)
-    model.fit(X_train, y_train)
-    pred = model.predict(X_test)
-    prob = model.predict_proba(X_test)[:, 1]
-    cm = confusion_matrix(y_test, pred, labels=[0, 1])
-    metrics = {
-        "task": "supervised electrical_thermal_anomaly_detection",
-        "dataset": MODEL2_KAGGLE,
-        "target": str(label_col),
-        "classes": [str(x) for x in classes],
-        "accuracy": float(accuracy_score(y_test, pred)),
-        "balanced_accuracy": float(balanced_accuracy_score(y_test, pred)),
-        "precision": float(precision_score(y_test, pred, zero_division=0)),
-        "recall": float(recall_score(y_test, pred, zero_division=0)),
-        "f1": float(f1_score(y_test, pred, zero_division=0)),
-        "roc_auc": float(roc_auc_score(y_test, prob)),
-        "pr_auc": float(average_precision_score(y_test, prob)),
-        "confusion_matrix": cm.tolist(),
-        "classification_report": classification_report(y_test, pred, output_dict=True, zero_division=0),
-    }
-    MODEL2_DIR.mkdir(parents=True, exist_ok=True)
-    joblib.dump(model, MODEL2_DIR / "v2_supervised_random_forest.pkl")
-    write_json(MODEL2_DIR / "feature_columns.json", {"features": list(X.columns)})
-    write_json(MODEL2_DIR / "metrics.json", metrics)
     write_json(RESULTS / "model2" / "metrics.json", metrics)
     print(json.dumps(metrics, indent=2))
     return metrics
@@ -273,18 +177,75 @@ def find_power_files(root: Path) -> tuple[Path, Path | None]:
     return generation, weather
 
 
+def parse_datetime(series: pd.Series) -> pd.Series:
+    """Parse the two common timestamp formats in this dataset without warnings."""
+    values = series.astype(str).str.strip()
+    out = pd.Series(pd.NaT, index=series.index, dtype="datetime64[ns]")
+    formats = [
+        "%d-%m-%Y %H:%M",
+        "%Y-%m-%d %H:%M:%S",
+        "%d-%m-%Y %H:%M:%S",
+        "%Y-%m-%d %H:%M",
+    ]
+    for fmt in formats:
+        mask = out.isna()
+        if not mask.any():
+            break
+        parsed = pd.to_datetime(values.loc[mask], format=fmt, errors="coerce")
+        out.loc[mask] = parsed
+    return out
+
+
+def save_model3_plots(actual: np.ndarray, pred: np.ndarray, result_dir: Path) -> None:
+    result_dir.mkdir(parents=True, exist_ok=True)
+    residual = actual - pred
+
+    plt.figure(figsize=(8, 6))
+    plt.scatter(actual, pred, s=8, alpha=0.35)
+    lo = min(float(actual.min()), float(pred.min()))
+    hi = max(float(actual.max()), float(pred.max()))
+    plt.plot([lo, hi], [lo, hi], linestyle="--")
+    plt.xlabel("Actual AC Power")
+    plt.ylabel("Expected AC Power")
+    plt.title("Model 3 — Actual vs Expected AC Power")
+    plt.tight_layout()
+    plt.savefig(result_dir / "actual_vs_expected.png", dpi=150)
+    plt.close()
+
+    plt.figure(figsize=(8, 6))
+    plt.hist(residual, bins=50)
+    plt.xlabel("Residual (Actual - Expected)")
+    plt.ylabel("Count")
+    plt.title("Model 3 — Residual Distribution")
+    plt.tight_layout()
+    plt.savefig(result_dir / "residual_distribution.png", dpi=150)
+    plt.close()
+
+    plt.figure(figsize=(10, 5))
+    plt.plot(actual[:1000], label="Actual")
+    plt.plot(pred[:1000], label="Expected")
+    plt.xlabel("Test observation")
+    plt.ylabel("AC Power")
+    plt.title("Model 3 — Actual vs Expected Power (first 1000 test points)")
+    plt.legend()
+    plt.tight_layout()
+    plt.savefig(result_dir / "actual_vs_expected_timeseries.png", dpi=150)
+    plt.close()
+
+
 def train_model3(root: Path) -> dict:
     print("\n================ MODEL 3: EXPECTED POWER PREDICTOR ================")
     generation_path, weather_path = find_power_files(root)
+
     generation = pd.read_csv(generation_path)
     generation.columns = [str(c).strip().upper() for c in generation.columns]
-    generation["DATE_TIME"] = pd.to_datetime(generation["DATE_TIME"], dayfirst=True, errors="coerce")
+    generation["DATE_TIME"] = parse_datetime(generation["DATE_TIME"])
     generation = generation.dropna(subset=["DATE_TIME", "AC_POWER"]).copy()
 
     if weather_path is not None:
         weather = pd.read_csv(weather_path)
         weather.columns = [str(c).strip().upper() for c in weather.columns]
-        weather["DATE_TIME"] = pd.to_datetime(weather["DATE_TIME"], dayfirst=True, errors="coerce")
+        weather["DATE_TIME"] = parse_datetime(weather["DATE_TIME"])
         weather = weather.dropna(subset=["DATE_TIME"]).copy()
         merge_keys = ["DATE_TIME"]
         if "PLANT_ID" in generation.columns and "PLANT_ID" in weather.columns:
@@ -306,12 +267,11 @@ def train_model3(root: Path) -> dict:
     df["day_sin"] = np.sin(2 * math.pi * df["day_of_year"] / 365.25)
     df["day_cos"] = np.cos(2 * math.pi * df["day_of_year"] / 365.25)
 
-    # IMPORTANT: DC_POWER is excluded. It is too close to the AC_POWER target and
-    # can make a power-forecast model look unrealistically perfect.
+    # DC_POWER stays excluded: it is a very close proxy for AC_POWER.
     features = [c for c in [
         "AMBIENT_TEMPERATURE", "MODULE_TEMPERATURE", "IRRADIATION",
         "hour", "minute", "day_of_week", "day_of_year", "month",
-        "hour_sin", "hour_cos", "day_sin", "day_cos"
+        "hour_sin", "hour_cos", "day_sin", "day_cos",
     ] if c in df.columns]
     if not features:
         raise RuntimeError("No valid non-leaky Model 3 predictor columns found.")
@@ -354,7 +314,7 @@ def train_model3(root: Path) -> dict:
         "generation_file": str(generation_path),
         "weather_file": str(weather_path) if weather_path else None,
         "features": features,
-        "dc_power_excluded": True,
+        "dc_power_in_features": False,
         "train_rows": int(len(train)),
         "test_rows": int(len(test)),
         "MAE": float(mae),
@@ -366,16 +326,18 @@ def train_model3(root: Path) -> dict:
         "ExplainedVariance": float(explained_variance_score(actual, pred)),
         "MaxError": float(max_error(actual, pred)),
         "split": "chronological 80:20",
+        "target": "AC_POWER",
     }
 
+    RESULT_DIR = RESULTS / "model3"
     MODEL3_DIR.mkdir(parents=True, exist_ok=True)
-    RESULTS_MODEL3 = RESULTS / "model3"
-    RESULTS_MODEL3.mkdir(parents=True, exist_ok=True)
+    RESULT_DIR.mkdir(parents=True, exist_ok=True)
+
     joblib.dump(model, MODEL3_DIR / "v2_xgboost_power_no_dc.pkl")
     write_json(MODEL3_DIR / "feature_columns.json", {"features": features})
-    write_json(MODEL3_DIR / "preprocessing.json", {"numeric_medians": medians.to_dict(), "dc_power_excluded": True})
+    write_json(MODEL3_DIR / "preprocessing.json", {"numeric_medians": medians.to_dict(), "datetime_parser": "explicit mixed formats", "dc_power_excluded": True})
     write_json(MODEL3_DIR / "model_metadata.json", metrics)
-    write_json(RESULTS_MODEL3 / "metrics.json", metrics)
+    write_json(RESULT_DIR / "metrics.json", metrics)
 
     prediction = pd.DataFrame({"actual_power": actual, "expected_power": pred})
     prediction["residual"] = prediction["actual_power"] - prediction["expected_power"]
@@ -383,45 +345,14 @@ def train_model3(root: Path) -> dict:
     prediction["deviation_percent"] = (
         prediction["residual"] / prediction["expected_power"].abs().replace(0, np.nan) * 100
     ).replace([np.inf, -np.inf], np.nan).fillna(0)
-    prediction.head(5000).to_csv(RESULTS_MODEL3 / "test_predictions.csv", index=False)
-
-    # Diagnostic plots
-    plt.figure(figsize=(8, 6))
-    plt.scatter(actual, pred, s=8, alpha=0.35)
-    lo = min(actual.min(), pred.min())
-    hi = max(actual.max(), pred.max())
-    plt.plot([lo, hi], [lo, hi], linestyle="--")
-    plt.xlabel("Actual AC Power")
-    plt.ylabel("Expected AC Power")
-    plt.title("Model 3 — Actual vs Expected AC Power")
-    plt.tight_layout()
-    plt.savefig(RESULTS_MODEL3 / "actual_vs_expected.png", dpi=150)
-    plt.close()
-
-    plt.figure(figsize=(8, 6))
-    plt.hist(prediction["residual"], bins=50)
-    plt.xlabel("Residual (Actual - Expected)")
-    plt.ylabel("Count")
-    plt.title("Model 3 — Residual Distribution")
-    plt.tight_layout()
-    plt.savefig(RESULTS_MODEL3 / "residual_distribution.png", dpi=150)
-    plt.close()
-
-    plt.figure(figsize=(10, 5))
-    plt.plot(prediction["actual_power"].head(1000).to_numpy(), label="Actual")
-    plt.plot(prediction["expected_power"].head(1000).to_numpy(), label="Expected")
-    plt.xlabel("Test observation")
-    plt.ylabel("AC Power")
-    plt.title("Model 3 — Actual vs Expected Power (first 1000 test points)")
-    plt.legend()
-    plt.tight_layout()
-    plt.savefig(RESULTS_MODEL3 / "actual_vs_expected_timeseries.png", dpi=150)
-    plt.close()
+    prediction.to_csv(RESULT_DIR / "test_predictions.csv", index=False)
+    save_model3_plots(actual, pred, RESULT_DIR)
 
     print("\nMODEL 3 COMPLETE METRICS")
     print("----------------------------------------")
     for key in ["MAE", "MSE", "RMSE", "R2", "MAPE_percent_nonzero_actual", "MedianAbsoluteError", "ExplainedVariance", "MaxError"]:
         print(f"{key:30s}: {metrics[key]}")
+    print(f"Plots saved to: {RESULT_DIR}")
     return metrics
 
 
