@@ -21,7 +21,6 @@ results/generated/
 
 # Model artifacts are normally kept locally or in Git LFS.
 # Keep them out of ordinary Git commits unless intentionally tracked.
-*.pth
 *.pt
 *.pkl
 *.joblib
