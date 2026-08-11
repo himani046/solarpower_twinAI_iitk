@@ -16,37 +16,265 @@ st.set_page_config(
 )
 
 # -----------------------------------------------------------------------------
-# Styling
+# SolarTwin AI — TestSigma-inspired light palette
+# Navy:   #0B1D2D
+# Purple: #6C2BD9
+# Coral:  #E77C83
+# Teal:   #12B8B0
+# Blue:   #3DA9FC
+# Cream:  #F8F7FF
 # -----------------------------------------------------------------------------
 st.markdown(
     """
     <style>
-    .main-title {
-        font-size: 2.6rem;
-        font-weight: 800;
-        margin-bottom: 0.1rem;
+    /* Main application */
+    .stApp {
+        background: #F8F7FF;
+        color: #0B1D2D;
     }
-    .subtitle {
-        color: #9aa0aa;
-        font-size: 1rem;
-        margin-bottom: 1.5rem;
+
+    .main .block-container {
+        max-width: 1400px;
+        padding-top: 2rem;
+        padding-bottom: 3rem;
     }
-    .alert-card {
-        padding: 1.2rem 1.4rem;
+
+    /* Sidebar */
+    section[data-testid="stSidebar"] {
+        background: #0B1D2D;
+        border-right: 1px solid #172D40;
+    }
+
+    section[data-testid="stSidebar"] * {
+        color: #F8F7FF !important;
+    }
+
+    section[data-testid="stSidebar"] input,
+    section[data-testid="stSidebar"] textarea {
+        background: #13293B !important;
+        border: 1px solid #31506A !important;
+        color: #FFFFFF !important;
+        border-radius: 10px !important;
+    }
+
+    section[data-testid="stSidebar"] [data-testid="stNumberInput"] button {
+        color: #FFFFFF !important;
+        background: #17344A !important;
+        border-color: #31506A !important;
+    }
+
+    section[data-testid="stSidebar"] hr {
+        border-color: #29445A !important;
+    }
+
+    /* Header */
+    .brand-row {
+        display: flex;
+        align-items: center;
+        gap: 0.8rem;
+        margin-bottom: 0.15rem;
+    }
+
+    .brand-icon {
+        width: 46px;
+        height: 46px;
         border-radius: 14px;
-        margin: 0.5rem 0 1.2rem 0;
-        border: 1px solid rgba(255,255,255,0.10);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: linear-gradient(135deg, #12B8B0, #3DA9FC);
+        box-shadow: 0 8px 24px rgba(18,184,176,0.22);
+        font-size: 1.45rem;
     }
-    .alert-red { background: rgba(255, 70, 70, 0.12); }
-    .alert-orange { background: rgba(255, 150, 0, 0.12); }
-    .alert-yellow { background: rgba(255, 210, 0, 0.10); }
-    .alert-green { background: rgba(40, 190, 100, 0.10); }
+
+    .main-title {
+        color: #0B1D2D;
+        font-size: 2.55rem;
+        line-height: 1.05;
+        font-weight: 850;
+        letter-spacing: -0.045em;
+        margin: 0;
+    }
+
+    .main-title .accent {
+        color: #E77C83;
+    }
+
+    .subtitle {
+        color: #536577;
+        font-size: 1rem;
+        margin: 0.45rem 0 1.6rem 3.35rem;
+    }
+
+    .eyebrow {
+        display: inline-block;
+        padding: 0.38rem 0.75rem;
+        border-radius: 999px;
+        background: #EFE8FF;
+        color: #5A24BD;
+        font-size: 0.78rem;
+        font-weight: 800;
+        letter-spacing: 0.03em;
+        margin-bottom: 0.8rem;
+    }
+
+    /* Section headings */
+    h1, h2, h3 {
+        color: #0B1D2D !important;
+        letter-spacing: -0.025em;
+    }
+
+    /* Cards */
+    .soft-card {
+        background: #FFFFFF;
+        border: 1px solid #E5E0F0;
+        border-radius: 18px;
+        padding: 1.15rem 1.3rem;
+        box-shadow: 0 8px 28px rgba(11,29,45,0.055);
+    }
+
+    .input-card {
+        background: #FFFFFF;
+        border: 1px solid #E5E0F0;
+        border-radius: 18px;
+        padding: 1.15rem 1.3rem;
+        min-height: 245px;
+        box-shadow: 0 8px 28px rgba(11,29,45,0.055);
+    }
+
     .small-label {
-        color: #9aa0aa;
-        font-size: 0.82rem;
+        color: #718096;
+        font-size: 0.75rem;
         text-transform: uppercase;
-        letter-spacing: 0.06em;
+        letter-spacing: 0.08em;
+        font-weight: 800;
     }
+
+    .decision-label {
+        color: #718096;
+        font-size: 0.78rem;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        font-weight: 800;
+        margin-bottom: 0.25rem;
+    }
+
+    /* Alert cards */
+    .alert-card {
+        padding: 1.15rem 1.35rem;
+        border-radius: 18px;
+        margin: 0.4rem 0 1.2rem 0;
+        border: 1px solid;
+        box-shadow: 0 8px 26px rgba(11,29,45,0.05);
+    }
+
+    .alert-card h2 {
+        margin: 0 0 0.25rem 0;
+        font-size: 1.45rem;
+    }
+
+    .alert-card p {
+        margin: 0;
+        color: #536577;
+    }
+
+    .alert-red {
+        background: #FFF1F2;
+        border-color: #F4B7BC;
+    }
+
+    .alert-orange {
+        background: #FFF5EA;
+        border-color: #F5C58F;
+    }
+
+    .alert-yellow {
+        background: #FFFBEA;
+        border-color: #EAD58A;
+    }
+
+    .alert-green {
+        background: #ECFBF8;
+        border-color: #A8E1D9;
+    }
+
+    /* Buttons */
+    .stButton > button {
+        border-radius: 12px !important;
+        border: 0 !important;
+        color: #FFFFFF !important;
+        background: linear-gradient(90deg, #6C2BD9 0%, #8B45E6 55%, #E77C83 100%) !important;
+        font-weight: 800 !important;
+        min-height: 2.8rem;
+        box-shadow: 0 8px 20px rgba(108,43,217,0.20);
+        transition: transform 0.15s ease, box-shadow 0.15s ease;
+    }
+
+    .stButton > button:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 11px 24px rgba(108,43,217,0.28);
+    }
+
+    /* Metrics */
+    [data-testid="stMetric"] {
+        background: #FFFFFF;
+        border: 1px solid #E5E0F0;
+        border-radius: 16px;
+        padding: 0.8rem 1rem;
+        box-shadow: 0 6px 20px rgba(11,29,45,0.04);
+    }
+
+    [data-testid="stMetricLabel"] {
+        color: #718096 !important;
+    }
+
+    [data-testid="stMetricValue"] {
+        color: #0B1D2D !important;
+        font-weight: 800;
+    }
+
+    /* File uploader */
+    [data-testid="stFileUploader"] {
+        background: #FFFFFF;
+        border: 1.5px dashed #C7B8E8;
+        border-radius: 16px;
+        padding: 0.35rem;
+    }
+
+    [data-testid="stFileUploader"] section {
+        background: #FCFBFF;
+        border-radius: 13px;
+    }
+
+    /* Progress bars */
+    [data-testid="stProgressBar"] > div > div {
+        background: linear-gradient(90deg, #12B8B0, #6C2BD9, #E77C83);
+    }
+
+    /* Dividers and info boxes */
+    hr {
+        border-color: #E5E0F0 !important;
+    }
+
+    [data-testid="stAlert"] {
+        border-radius: 14px;
+    }
+
+    /* Expander */
+    details {
+        background: #FFFFFF;
+        border: 1px solid #E5E0F0 !important;
+        border-radius: 14px !important;
+    }
+
+    /* Links / accents */
+    a {
+        color: #6C2BD9 !important;
+    }
+
+    /* Hide Streamlit decoration */
+    #MainMenu { visibility: hidden; }
+    footer { visibility: hidden; }
     </style>
     """,
     unsafe_allow_html=True,
@@ -58,16 +286,29 @@ def load_engine():
     return DigitalTwinEngine()
 
 
-st.markdown('<div class="main-title">☀️ SolarTwin AI</div>', unsafe_allow_html=True)
+# -----------------------------------------------------------------------------
+# Header
+# -----------------------------------------------------------------------------
 st.markdown(
-    '<div class="subtitle">PV Digital Twin for thermal fault detection and power-performance monitoring</div>',
+    '<div class="eyebrow">☀️ AI-POWERED PV DIGITAL TWIN</div>',
+    unsafe_allow_html=True,
+)
+st.markdown(
+    '<div class="brand-row">'
+    '<div class="brand-icon">☀️</div>'
+    '<div class="main-title">SolarTwin <span class="accent">AI</span></div>'
+    '</div>',
+    unsafe_allow_html=True,
+)
+st.markdown(
+    '<div class="subtitle">Visual fault detection, expected power prediction, and intelligent PV maintenance decisions.</div>',
     unsafe_allow_html=True,
 )
 
 engine = load_engine()
 
 # -----------------------------------------------------------------------------
-# Sidebar: operating information
+# Sidebar
 # -----------------------------------------------------------------------------
 with st.sidebar:
     st.header("Panel Information")
@@ -90,45 +331,46 @@ with st.sidebar:
     timestamp = st.text_input("Timestamp", "2026-08-11 12:00:00")
 
     st.divider()
-    st.caption("Model 1: visual multi-label anomaly detection")
-    st.caption("Model 3: expected AC power prediction")
-    st.caption("Model 2: experimental secondary signal")
+    st.caption("MODEL 1  •  Visual multi-label anomaly detection")
+    st.caption("MODEL 3  •  Expected AC power prediction")
+    st.caption("MODEL 2  •  Experimental secondary signal")
 
 # -----------------------------------------------------------------------------
-# Image upload
+# Upload + inputs
 # -----------------------------------------------------------------------------
-st.subheader("📤 Upload PV Panel Image")
+st.markdown("## Upload & Analyze")
+
 uploaded = st.file_uploader(
     "Upload a thermal / infrared PV panel image",
     type=["jpg", "jpeg", "png"],
-    help="The image is passed directly to Model 1 for anomaly detection.",
+    help="The uploaded image is passed directly to Model 1 for anomaly detection.",
 )
 
 if uploaded is None:
-    st.info("Upload a PV panel image to begin the Digital Twin analysis.")
+    st.info("📤 Upload a PV panel image to begin the Digital Twin analysis.")
     st.stop()
 
-left, right = st.columns([1.15, 1])
+left, right = st.columns([1.15, 1], gap="large")
+
 with left:
+    st.markdown('<div class="small-label">Thermal / Visual Input</div>', unsafe_allow_html=True)
     st.image(uploaded, caption=uploaded.name, use_container_width=True)
 
 with right:
-    st.markdown("### Analysis Inputs")
-    st.write(f"**Panel:** {panel_id}")
-    st.write(f"**Actual AC Power:** {actual_power:.2f}")
-    st.write(f"**Irradiation:** {irradiation:.0f} W/m²")
-    st.write(f"**Ambient:** {ambient:.1f} °C")
-    st.write(f"**Module:** {module_temp:.1f} °C")
-    st.write(f"**Timestamp:** {timestamp}")
-
-    analyze = st.button(
-        "🔍 ANALYZE PANEL",
-        type="primary",
-        use_container_width=True,
-    )
+    st.markdown('<div class="small-label">Analysis Configuration</div>', unsafe_allow_html=True)
+    st.markdown('<div class="input-card">', unsafe_allow_html=True)
+    st.markdown(f"**Panel ID:** {panel_id}")
+    st.markdown(f"**Actual AC Power:** {actual_power:.2f}")
+    st.markdown(f"**Irradiation:** {irradiation:.0f} W/m²")
+    st.markdown(f"**Ambient:** {ambient:.1f} °C")
+    st.markdown(f"**Module:** {module_temp:.1f} °C")
+    st.markdown(f"**Timestamp:** {timestamp}")
+    st.markdown("</div>", unsafe_allow_html=True)
+    st.write("")
+    analyze = st.button("🔍  ANALYZE PANEL", type="primary", use_container_width=True)
 
 if not analyze:
-    st.info("Click **ANALYZE PANEL** to run the Digital Twin.")
+    st.info("Click **ANALYZE PANEL** to run the SolarTwin AI Digital Twin.")
     st.stop()
 
 # -----------------------------------------------------------------------------
@@ -164,7 +406,7 @@ actual_ac_power = float(power.get("actual_ac_power") or actual_power)
 deviation = float(power.get("deviation_percent") or 0.0)
 
 # -----------------------------------------------------------------------------
-# Overall decision
+# Decision
 # -----------------------------------------------------------------------------
 alert_config = {
     "RED": ("🔴 RED ALERT", "Immediate inspection recommended.", "alert-red"),
@@ -184,9 +426,7 @@ st.markdown(
     unsafe_allow_html=True,
 )
 
-# -----------------------------------------------------------------------------
 # Summary metrics
-# -----------------------------------------------------------------------------
 c1, c2, c3, c4 = st.columns(4)
 c1.metric("Visual Status", visual.get("status", "Unavailable"))
 c2.metric("Faults Detected", len(anomalies))
@@ -194,7 +434,7 @@ c3.metric("Expected AC Power", f"{expected_power:.2f}")
 c4.metric("Power Deviation", f"{deviation:.2f}%")
 
 # -----------------------------------------------------------------------------
-# Model 1 results
+# Model 1
 # -----------------------------------------------------------------------------
 st.divider()
 st.markdown("## 🔍 Visual Fault Detection")
@@ -212,7 +452,7 @@ for idx, (name, probability) in enumerate(probabilities.items()):
         st.progress(min(max(probability, 0.0), 1.0))
 
 # -----------------------------------------------------------------------------
-# Model 3 results
+# Model 3
 # -----------------------------------------------------------------------------
 st.divider()
 st.markdown("## ⚡ Power Performance")
