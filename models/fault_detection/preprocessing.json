@@ -1,0 +1,14 @@
+{
+  "image_size": 224,
+  "normalization": "ImageNet",
+  "train_split": 0.8,
+  "test_split": 0.2,
+  "validation_fraction_of_training": 0.2,
+  "random_state": 42,
+  "task": "multi-label",
+  "classes": [
+    "Cracks",
+    "Hotspots",
+    "Shadings"
+  ]
+}

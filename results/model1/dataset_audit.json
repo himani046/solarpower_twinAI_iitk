@@ -1,0 +1,18 @@
+{
+  "raw_files": 1000,
+  "unique_exact_image_groups": 198,
+  "single_label_groups": 11,
+  "cross_class_groups": 187,
+  "classes": [
+    "Cracks",
+    "Hotspots",
+    "Shadings"
+  ],
+  "class_mapping": {
+    "Cracks": 0,
+    "Hotspots": 1,
+    "Shadings": 2
+  },
+  "group_split": true,
+  "seed": 42
+}

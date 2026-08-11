@@ -1,0 +1,137 @@
+[
+  {
+    "epoch": 1,
+    "train_loss": 0.20616716241079663,
+    "micro_f1": 0.8391608391608392,
+    "macro_f1": 0.6887947269303202,
+    "hamming_loss": 0.23958333333333334,
+    "mean_average_precision": 0.8761460332180949,
+    "macro_roc_auc": 0.8022727272727272
+  },
+  {
+    "epoch": 2,
+    "train_loss": 0.1817513188672444,
+    "micro_f1": 0.8553459119496856,
+    "macro_f1": 0.8422606878378992,
+    "hamming_loss": 0.23958333333333334,
+    "mean_average_precision": 0.8831227122575708,
+    "macro_roc_auc": 0.7704545454545455
+  },
+  {
+    "epoch": 3,
+    "train_loss": 0.1579607826849771,
+    "micro_f1": 0.8407643312101911,
+    "macro_f1": 0.8062797869358004,
+    "hamming_loss": 0.2604166666666667,
+    "mean_average_precision": 0.8886996449802252,
+    "macro_roc_auc": 0.7765151515151515
+  },
+  {
+    "epoch": 4,
+    "train_loss": 0.12557526110183626,
+    "micro_f1": 0.8407643312101911,
+    "macro_f1": 0.8122317287471552,
+    "hamming_loss": 0.2604166666666667,
+    "mean_average_precision": 0.9108430434131495,
+    "macro_roc_auc": 0.7977272727272727
+  },
+  {
+    "epoch": 5,
+    "train_loss": 0.12454480027395581,
+    "micro_f1": 0.8481012658227848,
+    "macro_f1": 0.8182813355227149,
+    "hamming_loss": 0.25,
+    "mean_average_precision": 0.9038048920306596,
+    "macro_roc_auc": 0.7901515151515152
+  },
+  {
+    "epoch": 6,
+    "train_loss": 0.09554860267847304,
+    "micro_f1": 0.8205128205128205,
+    "macro_f1": 0.7770114942528736,
+    "hamming_loss": 0.2916666666666667,
+    "mean_average_precision": 0.8842992102305604,
+    "macro_roc_auc": 0.7598484848484848
+  },
+  {
+    "epoch": 7,
+    "train_loss": 0.1043898074163331,
+    "micro_f1": 0.8641975308641975,
+    "macro_f1": 0.846576711644178,
+    "hamming_loss": 0.22916666666666666,
+    "mean_average_precision": 0.9149476833169915,
+    "macro_roc_auc": 0.8037878787878787
+  },
+  {
+    "epoch": 8,
+    "train_loss": 0.07698787831597859,
+    "micro_f1": 0.8780487804878049,
+    "macro_f1": 0.8659003831417625,
+    "hamming_loss": 0.20833333333333334,
+    "mean_average_precision": 0.9033069893902014,
+    "macro_roc_auc": 0.7871212121212121
+  },
+  {
+    "epoch": 9,
+    "train_loss": 0.06333253887437638,
+    "micro_f1": 0.8711656441717791,
+    "macro_f1": 0.8564441183663488,
+    "hamming_loss": 0.21875,
+    "mean_average_precision": 0.9066197613788626,
+    "macro_roc_auc": 0.7871212121212121
+  },
+  {
+    "epoch": 10,
+    "train_loss": 0.07744550775913965,
+    "micro_f1": 0.8848484848484849,
+    "macro_f1": 0.874970677926343,
+    "hamming_loss": 0.19791666666666666,
+    "mean_average_precision": 0.8959532398727873,
+    "macro_roc_auc": 0.7886363636363636
+  },
+  {
+    "epoch": 11,
+    "train_loss": 0.06829221984223714,
+    "micro_f1": 0.8848484848484849,
+    "macro_f1": 0.874970677926343,
+    "hamming_loss": 0.19791666666666666,
+    "mean_average_precision": 0.9023740597910038,
+    "macro_roc_auc": 0.8053030303030303
+  },
+  {
+    "epoch": 12,
+    "train_loss": 0.06524958020992695,
+    "micro_f1": 0.8780487804878049,
+    "macro_f1": 0.8659003831417625,
+    "hamming_loss": 0.20833333333333334,
+    "mean_average_precision": 0.8877068596509178,
+    "macro_roc_auc": 0.7734848484848484
+  },
+  {
+    "epoch": 13,
+    "train_loss": 0.07993034202428091,
+    "micro_f1": 0.8848484848484849,
+    "macro_f1": 0.874970677926343,
+    "hamming_loss": 0.19791666666666666,
+    "mean_average_precision": 0.8828021011097956,
+    "macro_roc_auc": 0.7643939393939393
+  },
+  {
+    "epoch": 14,
+    "train_loss": 0.050674221700146085,
+    "micro_f1": 0.8848484848484849,
+    "macro_f1": 0.874970677926343,
+    "hamming_loss": 0.19791666666666666,
+    "mean_average_precision": 0.8873251358769902,
+    "macro_roc_auc": 0.775
+  },
+  {
+    "epoch": 15,
+    "train_loss": 0.047214579709347275,
+    "micro_f1": 0.8848484848484849,
+    "macro_f1": 0.874970677926343,
+    "hamming_loss": 0.19791666666666666,
+    "mean_average_precision": 0.8824335656758685,
+    "macro_roc_auc": 0.7628787878787878
+  }
+]

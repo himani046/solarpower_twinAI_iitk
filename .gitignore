@@ -28,3 +28,5 @@ results/generated/
 
 # Local Streamlit state
 .streamlit/secrets.toml
+
+*.pyc

@@ -1,0 +1,698 @@
+[
+  {
+    "path": "/content/solarpower_twinAI_iitk/data/raw/model1/Photovoltaic module dataset for automated fault detection and analysis in large photovoltaic systems using photovoltaic module fault detection/PVMD dataset/PVMD dataset/PVMD dataset/Cracks/C163.jpeg",
+    "true_labels": [
+      "Cracks",
+      "Hotspots"
+    ],
+    "predicted_labels": [
+      "Cracks",
+      "Hotspots",
+      "Shadings"
+    ],
+    "probabilities": {
+      "Cracks": 0.9586794376373291,
+      "Hotspots": 0.949700117111206,
+      "Shadings": 0.45004284381866455
+    }
+  },
+  {
+    "path": "/content/solarpower_twinAI_iitk/data/raw/model1/Photovoltaic module dataset for automated fault detection and analysis in large photovoltaic systems using photovoltaic module fault detection/PVMD dataset/PVMD dataset/PVMD dataset/Cracks/C144.jpeg",
+    "true_labels": [
+      "Cracks",
+      "Hotspots"
+    ],
+    "predicted_labels": [
+      "Cracks",
+      "Hotspots",
+      "Shadings"
+    ],
+    "probabilities": {
+      "Cracks": 0.9399174451828003,
+      "Hotspots": 0.9457529187202454,
+      "Shadings": 0.11589434742927551
+    }
+  },
+  {
+    "path": "/content/solarpower_twinAI_iitk/data/raw/model1/Photovoltaic module dataset for automated fault detection and analysis in large photovoltaic systems using photovoltaic module fault detection/PVMD dataset/PVMD dataset/PVMD dataset/Cracks/C134.jpeg",
+    "true_labels": [
+      "Cracks",
+      "Hotspots",
+      "Shadings"
+    ],
+    "predicted_labels": [
+      "Cracks",
+      "Hotspots",
+      "Shadings"
+    ],
+    "probabilities": {
+      "Cracks": 0.9112274050712585,
+      "Hotspots": 0.8831232190132141,
+      "Shadings": 0.6275873184204102
+    }
+  },
+  {
+    "path": "/content/solarpower_twinAI_iitk/data/raw/model1/Photovoltaic module dataset for automated fault detection and analysis in large photovoltaic systems using photovoltaic module fault detection/PVMD dataset/PVMD dataset/PVMD dataset/Cracks/C113.jpeg",
+    "true_labels": [
+      "Cracks",
+      "Hotspots",
+      "Shadings"
+    ],
+    "predicted_labels": [
+      "Cracks",
+      "Hotspots",
+      "Shadings"
+    ],
+    "probabilities": {
+      "Cracks": 0.9460682272911072,
+      "Hotspots": 0.9134063720703125,
+      "Shadings": 0.6357347965240479
+    }
+  },
+  {
+    "path": "/content/solarpower_twinAI_iitk/data/raw/model1/Photovoltaic module dataset for automated fault detection and analysis in large photovoltaic systems using photovoltaic module fault detection/PVMD dataset/PVMD dataset/PVMD dataset/Cracks/C273.jpeg",
+    "true_labels": [
+      "Cracks",
+      "Hotspots"
+    ],
+    "predicted_labels": [
+      "Cracks",
+      "Hotspots",
+      "Shadings"
+    ],
+    "probabilities": {
+      "Cracks": 0.9715263247489929,
+      "Hotspots": 0.9602404832839966,
+      "Shadings": 0.07228246331214905
+    }
+  },
+  {
+    "path": "/content/solarpower_twinAI_iitk/data/raw/model1/Photovoltaic module dataset for automated fault detection and analysis in large photovoltaic systems using photovoltaic module fault detection/PVMD dataset/PVMD dataset/PVMD dataset/Shadings/S6.jpeg",
+    "true_labels": [
+      "Shadings"
+    ],
+    "predicted_labels": [
+      "Shadings"
+    ],
+    "probabilities": {
+      "Cracks": 0.004308084491640329,
+      "Hotspots": 0.004542125388979912,
+      "Shadings": 0.9918694496154785
+    }
+  },
+  {
+    "path": "/content/solarpower_twinAI_iitk/data/raw/model1/Photovoltaic module dataset for automated fault detection and analysis in large photovoltaic systems using photovoltaic module fault detection/PVMD dataset/PVMD dataset/PVMD dataset/Cracks/C341.jpeg",
+    "true_labels": [
+      "Cracks",
+      "Hotspots",
+      "Shadings"
+    ],
+    "predicted_labels": [
+      "Cracks",
+      "Hotspots",
+      "Shadings"
+    ],
+    "probabilities": {
+      "Cracks": 0.9751585125923157,
+      "Hotspots": 0.9696311950683594,
+      "Shadings": 0.19081787765026093
+    }
+  },
+  {
+    "path": "/content/solarpower_twinAI_iitk/data/raw/model1/Photovoltaic module dataset for automated fault detection and analysis in large photovoltaic systems using photovoltaic module fault detection/PVMD dataset/PVMD dataset/PVMD dataset/Cracks/C119.jpeg",
+    "true_labels": [
+      "Cracks",
+      "Hotspots",
+      "Shadings"
+    ],
+    "predicted_labels": [
+      "Cracks",
+      "Hotspots",
+      "Shadings"
+    ],
+    "probabilities": {
+      "Cracks": 0.2015295922756195,
+      "Hotspots": 0.19542044401168823,
+      "Shadings": 0.9864951372146606
+    }
+  },
+  {
+    "path": "/content/solarpower_twinAI_iitk/data/raw/model1/Photovoltaic module dataset for automated fault detection and analysis in large photovoltaic systems using photovoltaic module fault detection/PVMD dataset/PVMD dataset/PVMD dataset/Cracks/C140.jpeg",
+    "true_labels": [
+      "Cracks",
+      "Hotspots",
+      "Shadings"
+    ],
+    "predicted_labels": [
+      "Cracks",
+      "Hotspots",
+      "Shadings"
+    ],
+    "probabilities": {
+      "Cracks": 0.9575377106666565,
+      "Hotspots": 0.9513459205627441,
+      "Shadings": 0.36339470744132996
+    }
+  },
+  {
+    "path": "/content/solarpower_twinAI_iitk/data/raw/model1/Photovoltaic module dataset for automated fault detection and analysis in large photovoltaic systems using photovoltaic module fault detection/PVMD dataset/PVMD dataset/PVMD dataset/Cracks/C185.jpeg",
+    "true_labels": [
+      "Cracks",
+      "Hotspots",
+      "Shadings"
+    ],
+    "predicted_labels": [
+      "Cracks",
+      "Hotspots",
+      "Shadings"
+    ],
+    "probabilities": {
+      "Cracks": 0.9787584543228149,
+      "Hotspots": 0.9752541780471802,
+      "Shadings": 0.6116500496864319
+    }
+  },
+  {
+    "path": "/content/solarpower_twinAI_iitk/data/raw/model1/Photovoltaic module dataset for automated fault detection and analysis in large photovoltaic systems using photovoltaic module fault detection/PVMD dataset/PVMD dataset/PVMD dataset/Cracks/C137.jpeg",
+    "true_labels": [
+      "Cracks",
+      "Hotspots",
+      "Shadings"
+    ],
+    "predicted_labels": [
+      "Shadings"
+    ],
+    "probabilities": {
+      "Cracks": 0.016263272613286972,
+      "Hotspots": 0.02081294171512127,
+      "Shadings": 0.9727839827537537
+    }
+  },
+  {
+    "path": "/content/solarpower_twinAI_iitk/data/raw/model1/Photovoltaic module dataset for automated fault detection and analysis in large photovoltaic systems using photovoltaic module fault detection/PVMD dataset/PVMD dataset/PVMD dataset/Cracks/C233.jpeg",
+    "true_labels": [
+      "Cracks",
+      "Hotspots",
+      "Shadings"
+    ],
+    "predicted_labels": [
+      "Cracks",
+      "Hotspots",
+      "Shadings"
+    ],
+    "probabilities": {
+      "Cracks": 0.9764982461929321,
+      "Hotspots": 0.9706177115440369,
+      "Shadings": 0.9205620884895325
+    }
+  },
+  {
+    "path": "/content/solarpower_twinAI_iitk/data/raw/model1/Photovoltaic module dataset for automated fault detection and analysis in large photovoltaic systems using photovoltaic module fault detection/PVMD dataset/PVMD dataset/PVMD dataset/Cracks/C325.jpeg",
+    "true_labels": [
+      "Cracks",
+      "Hotspots",
+      "Shadings"
+    ],
+    "predicted_labels": [
+      "Cracks",
+      "Hotspots",
+      "Shadings"
+    ],
+    "probabilities": {
+      "Cracks": 0.976269543170929,
+      "Hotspots": 0.968376636505127,
+      "Shadings": 0.1843070685863495
+    }
+  },
+  {
+    "path": "/content/solarpower_twinAI_iitk/data/raw/model1/Photovoltaic module dataset for automated fault detection and analysis in large photovoltaic systems using photovoltaic module fault detection/PVMD dataset/PVMD dataset/PVMD dataset/Cracks/C349.jpeg",
+    "true_labels": [
+      "Cracks",
+      "Hotspots",
+      "Shadings"
+    ],
+    "predicted_labels": [
+      "Cracks",
+      "Hotspots",
+      "Shadings"
+    ],
+    "probabilities": {
+      "Cracks": 0.9809549450874329,
+      "Hotspots": 0.9673044085502625,
+      "Shadings": 0.6123272776603699
+    }
+  },
+  {
+    "path": "/content/solarpower_twinAI_iitk/data/raw/model1/Photovoltaic module dataset for automated fault detection and analysis in large photovoltaic systems using photovoltaic module fault detection/PVMD dataset/PVMD dataset/PVMD dataset/Cracks/C267.jpeg",
+    "true_labels": [
+      "Cracks",
+      "Hotspots"
+    ],
+    "predicted_labels": [
+      "Cracks",
+      "Hotspots",
+      "Shadings"
+    ],
+    "probabilities": {
+      "Cracks": 0.9667105674743652,
+      "Hotspots": 0.9532973766326904,
+      "Shadings": 0.9807153940200806
+    }
+  },
+  {
+    "path": "/content/solarpower_twinAI_iitk/data/raw/model1/Photovoltaic module dataset for automated fault detection and analysis in large photovoltaic systems using photovoltaic module fault detection/PVMD dataset/PVMD dataset/PVMD dataset/Cracks/C19.jpeg",
+    "true_labels": [
+      "Cracks",
+      "Hotspots",
+      "Shadings"
+    ],
+    "predicted_labels": [
+      "Cracks",
+      "Hotspots",
+      "Shadings"
+    ],
+    "probabilities": {
+      "Cracks": 0.9019593596458435,
+      "Hotspots": 0.8757151961326599,
+      "Shadings": 0.9072967171669006
+    }
+  },
+  {
+    "path": "/content/solarpower_twinAI_iitk/data/raw/model1/Photovoltaic module dataset for automated fault detection and analysis in large photovoltaic systems using photovoltaic module fault detection/PVMD dataset/PVMD dataset/PVMD dataset/Cracks/C278.jpeg",
+    "true_labels": [
+      "Cracks",
+      "Hotspots",
+      "Shadings"
+    ],
+    "predicted_labels": [
+      "Cracks",
+      "Hotspots",
+      "Shadings"
+    ],
+    "probabilities": {
+      "Cracks": 0.9399174451828003,
+      "Hotspots": 0.9457529187202454,
+      "Shadings": 0.11589434742927551
+    }
+  },
+  {
+    "path": "/content/solarpower_twinAI_iitk/data/raw/model1/Photovoltaic module dataset for automated fault detection and analysis in large photovoltaic systems using photovoltaic module fault detection/PVMD dataset/PVMD dataset/PVMD dataset/Cracks/C226.jpeg",
+    "true_labels": [
+      "Cracks",
+      "Hotspots"
+    ],
+    "predicted_labels": [
+      "Cracks",
+      "Hotspots",
+      "Shadings"
+    ],
+    "probabilities": {
+      "Cracks": 0.9907867312431335,
+      "Hotspots": 0.970382571220398,
+      "Shadings": 0.14229531586170197
+    }
+  },
+  {
+    "path": "/content/solarpower_twinAI_iitk/data/raw/model1/Photovoltaic module dataset for automated fault detection and analysis in large photovoltaic systems using photovoltaic module fault detection/PVMD dataset/PVMD dataset/PVMD dataset/Cracks/C122.jpeg",
+    "true_labels": [
+      "Cracks",
+      "Hotspots",
+      "Shadings"
+    ],
+    "predicted_labels": [
+      "Cracks",
+      "Hotspots",
+      "Shadings"
+    ],
+    "probabilities": {
+      "Cracks": 0.9019593596458435,
+      "Hotspots": 0.8757151961326599,
+      "Shadings": 0.9072967171669006
+    }
+  },
+  {
+    "path": "/content/solarpower_twinAI_iitk/data/raw/model1/Photovoltaic module dataset for automated fault detection and analysis in large photovoltaic systems using photovoltaic module fault detection/PVMD dataset/PVMD dataset/PVMD dataset/Shadings/S3.jpeg",
+    "true_labels": [
+      "Shadings"
+    ],
+    "predicted_labels": [
+      "Cracks",
+      "Hotspots",
+      "Shadings"
+    ],
+    "probabilities": {
+      "Cracks": 0.9709086418151855,
+      "Hotspots": 0.9290936589241028,
+      "Shadings": 0.9760164022445679
+    }
+  },
+  {
+    "path": "/content/solarpower_twinAI_iitk/data/raw/model1/Photovoltaic module dataset for automated fault detection and analysis in large photovoltaic systems using photovoltaic module fault detection/PVMD dataset/PVMD dataset/PVMD dataset/Cracks/C135.jpeg",
+    "true_labels": [
+      "Cracks",
+      "Hotspots",
+      "Shadings"
+    ],
+    "predicted_labels": [
+      "Cracks",
+      "Hotspots"
+    ],
+    "probabilities": {
+      "Cracks": 0.9572351574897766,
+      "Hotspots": 0.9109534621238708,
+      "Shadings": 0.010110882110893726
+    }
+  },
+  {
+    "path": "/content/solarpower_twinAI_iitk/data/raw/model1/Photovoltaic module dataset for automated fault detection and analysis in large photovoltaic systems using photovoltaic module fault detection/PVMD dataset/PVMD dataset/PVMD dataset/Cracks/C261.jpeg",
+    "true_labels": [
+      "Cracks",
+      "Hotspots"
+    ],
+    "predicted_labels": [
+      "Cracks",
+      "Hotspots"
+    ],
+    "probabilities": {
+      "Cracks": 0.9704071283340454,
+      "Hotspots": 0.9480895400047302,
+      "Shadings": 0.019023308530449867
+    }
+  },
+  {
+    "path": "/content/solarpower_twinAI_iitk/data/raw/model1/Photovoltaic module dataset for automated fault detection and analysis in large photovoltaic systems using photovoltaic module fault detection/PVMD dataset/PVMD dataset/PVMD dataset/Cracks/C167.jpeg",
+    "true_labels": [
+      "Cracks",
+      "Hotspots",
+      "Shadings"
+    ],
+    "predicted_labels": [
+      "Cracks",
+      "Hotspots",
+      "Shadings"
+    ],
+    "probabilities": {
+      "Cracks": 0.9804090261459351,
+      "Hotspots": 0.9792238473892212,
+      "Shadings": 0.9506986141204834
+    }
+  },
+  {
+    "path": "/content/solarpower_twinAI_iitk/data/raw/model1/Photovoltaic module dataset for automated fault detection and analysis in large photovoltaic systems using photovoltaic module fault detection/PVMD dataset/PVMD dataset/PVMD dataset/Cracks/C115.jpeg",
+    "true_labels": [
+      "Cracks",
+      "Hotspots",
+      "Shadings"
+    ],
+    "predicted_labels": [
+      "Cracks",
+      "Hotspots",
+      "Shadings"
+    ],
+    "probabilities": {
+      "Cracks": 0.8873662948608398,
+      "Hotspots": 0.8794932961463928,
+      "Shadings": 0.9442753791809082
+    }
+  },
+  {
+    "path": "/content/solarpower_twinAI_iitk/data/raw/model1/Photovoltaic module dataset for automated fault detection and analysis in large photovoltaic systems using photovoltaic module fault detection/PVMD dataset/PVMD dataset/PVMD dataset/Cracks/C218.jpeg",
+    "true_labels": [
+      "Cracks",
+      "Hotspots"
+    ],
+    "predicted_labels": [
+      "Cracks",
+      "Hotspots"
+    ],
+    "probabilities": {
+      "Cracks": 0.9801064729690552,
+      "Hotspots": 0.9568244218826294,
+      "Shadings": 0.0422561950981617
+    }
+  },
+  {
+    "path": "/content/solarpower_twinAI_iitk/data/raw/model1/Photovoltaic module dataset for automated fault detection and analysis in large photovoltaic systems using photovoltaic module fault detection/PVMD dataset/PVMD dataset/PVMD dataset/Cracks/C216.jpeg",
+    "true_labels": [
+      "Cracks",
+      "Hotspots"
+    ],
+    "predicted_labels": [
+      "Cracks",
+      "Hotspots",
+      "Shadings"
+    ],
+    "probabilities": {
+      "Cracks": 0.9045718908309937,
+      "Hotspots": 0.816457211971283,
+      "Shadings": 0.9115179181098938
+    }
+  },
+  {
+    "path": "/content/solarpower_twinAI_iitk/data/raw/model1/Photovoltaic module dataset for automated fault detection and analysis in large photovoltaic systems using photovoltaic module fault detection/PVMD dataset/PVMD dataset/PVMD dataset/Cracks/C194.jpeg",
+    "true_labels": [
+      "Cracks",
+      "Hotspots"
+    ],
+    "predicted_labels": [
+      "Cracks",
+      "Hotspots",
+      "Shadings"
+    ],
+    "probabilities": {
+      "Cracks": 0.9762691259384155,
+      "Hotspots": 0.9763570427894592,
+      "Shadings": 0.9743160605430603
+    }
+  },
+  {
+    "path": "/content/solarpower_twinAI_iitk/data/raw/model1/Photovoltaic module dataset for automated fault detection and analysis in large photovoltaic systems using photovoltaic module fault detection/PVMD dataset/PVMD dataset/PVMD dataset/Cracks/C199.jpeg",
+    "true_labels": [
+      "Cracks",
+      "Hotspots"
+    ],
+    "predicted_labels": [
+      "Cracks",
+      "Hotspots",
+      "Shadings"
+    ],
+    "probabilities": {
+      "Cracks": 0.9788718819618225,
+      "Hotspots": 0.9507649540901184,
+      "Shadings": 0.12075913697481155
+    }
+  },
+  {
+    "path": "/content/solarpower_twinAI_iitk/data/raw/model1/Photovoltaic module dataset for automated fault detection and analysis in large photovoltaic systems using photovoltaic module fault detection/PVMD dataset/PVMD dataset/PVMD dataset/Cracks/C193.jpeg",
+    "true_labels": [
+      "Cracks",
+      "Hotspots",
+      "Shadings"
+    ],
+    "predicted_labels": [
+      "Cracks",
+      "Hotspots",
+      "Shadings"
+    ],
+    "probabilities": {
+      "Cracks": 0.984630286693573,
+      "Hotspots": 0.9903275370597839,
+      "Shadings": 0.9678709506988525
+    }
+  },
+  {
+    "path": "/content/solarpower_twinAI_iitk/data/raw/model1/Photovoltaic module dataset for automated fault detection and analysis in large photovoltaic systems using photovoltaic module fault detection/PVMD dataset/PVMD dataset/PVMD dataset/Cracks/C297.jpeg",
+    "true_labels": [
+      "Cracks",
+      "Hotspots",
+      "Shadings"
+    ],
+    "predicted_labels": [
+      "Cracks",
+      "Hotspots",
+      "Shadings"
+    ],
+    "probabilities": {
+      "Cracks": 0.9586794376373291,
+      "Hotspots": 0.949700117111206,
+      "Shadings": 0.45004284381866455
+    }
+  },
+  {
+    "path": "/content/solarpower_twinAI_iitk/data/raw/model1/Photovoltaic module dataset for automated fault detection and analysis in large photovoltaic systems using photovoltaic module fault detection/PVMD dataset/PVMD dataset/PVMD dataset/Cracks/C111.jpeg",
+    "true_labels": [
+      "Cracks",
+      "Hotspots",
+      "Shadings"
+    ],
+    "predicted_labels": [
+      "Cracks",
+      "Hotspots",
+      "Shadings"
+    ],
+    "probabilities": {
+      "Cracks": 0.9843565821647644,
+      "Hotspots": 0.9755423665046692,
+      "Shadings": 0.9891033172607422
+    }
+  },
+  {
+    "path": "/content/solarpower_twinAI_iitk/data/raw/model1/Photovoltaic module dataset for automated fault detection and analysis in large photovoltaic systems using photovoltaic module fault detection/PVMD dataset/PVMD dataset/PVMD dataset/Cracks/C198.jpeg",
+    "true_labels": [
+      "Cracks",
+      "Hotspots"
+    ],
+    "predicted_labels": [
+      "Cracks",
+      "Hotspots",
+      "Shadings"
+    ],
+    "probabilities": {
+      "Cracks": 0.9721997380256653,
+      "Hotspots": 0.9670548439025879,
+      "Shadings": 0.9947137236595154
+    }
+  },
+  {
+    "path": "/content/solarpower_twinAI_iitk/data/raw/model1/Photovoltaic module dataset for automated fault detection and analysis in large photovoltaic systems using photovoltaic module fault detection/PVMD dataset/PVMD dataset/PVMD dataset/Cracks/C150.jpeg",
+    "true_labels": [
+      "Cracks",
+      "Hotspots",
+      "Shadings"
+    ],
+    "predicted_labels": [
+      "Cracks",
+      "Hotspots",
+      "Shadings"
+    ],
+    "probabilities": {
+      "Cracks": 0.9702047109603882,
+      "Hotspots": 0.9598011374473572,
+      "Shadings": 0.994088888168335
+    }
+  },
+  {
+    "path": "/content/solarpower_twinAI_iitk/data/raw/model1/Photovoltaic module dataset for automated fault detection and analysis in large photovoltaic systems using photovoltaic module fault detection/PVMD dataset/PVMD dataset/PVMD dataset/Cracks/C211.jpeg",
+    "true_labels": [
+      "Cracks",
+      "Hotspots"
+    ],
+    "predicted_labels": [
+      "Cracks",
+      "Hotspots",
+      "Shadings"
+    ],
+    "probabilities": {
+      "Cracks": 0.9869360327720642,
+      "Hotspots": 0.9830123782157898,
+      "Shadings": 0.9970979690551758
+    }
+  },
+  {
+    "path": "/content/solarpower_twinAI_iitk/data/raw/model1/Photovoltaic module dataset for automated fault detection and analysis in large photovoltaic systems using photovoltaic module fault detection/PVMD dataset/PVMD dataset/PVMD dataset/Cracks/C143.jpeg",
+    "true_labels": [
+      "Cracks",
+      "Hotspots",
+      "Shadings"
+    ],
+    "predicted_labels": [
+      "Cracks",
+      "Hotspots",
+      "Shadings"
+    ],
+    "probabilities": {
+      "Cracks": 0.9731060266494751,
+      "Hotspots": 0.9614730477333069,
+      "Shadings": 0.9961860775947571
+    }
+  },
+  {
+    "path": "/content/solarpower_twinAI_iitk/data/raw/model1/Photovoltaic module dataset for automated fault detection and analysis in large photovoltaic systems using photovoltaic module fault detection/PVMD dataset/PVMD dataset/PVMD dataset/Cracks/C133.jpeg",
+    "true_labels": [
+      "Cracks",
+      "Hotspots",
+      "Shadings"
+    ],
+    "predicted_labels": [
+      "Cracks",
+      "Hotspots",
+      "Shadings"
+    ],
+    "probabilities": {
+      "Cracks": 0.9804915189743042,
+      "Hotspots": 0.9672248959541321,
+      "Shadings": 0.9647526144981384
+    }
+  },
+  {
+    "path": "/content/solarpower_twinAI_iitk/data/raw/model1/Photovoltaic module dataset for automated fault detection and analysis in large photovoltaic systems using photovoltaic module fault detection/PVMD dataset/PVMD dataset/PVMD dataset/Cracks/C126.jpeg",
+    "true_labels": [
+      "Cracks",
+      "Hotspots",
+      "Shadings"
+    ],
+    "predicted_labels": [
+      "Cracks",
+      "Hotspots",
+      "Shadings"
+    ],
+    "probabilities": {
+      "Cracks": 0.7154337763786316,
+      "Hotspots": 0.6791391372680664,
+      "Shadings": 0.6653345227241516
+    }
+  },
+  {
+    "path": "/content/solarpower_twinAI_iitk/data/raw/model1/Photovoltaic module dataset for automated fault detection and analysis in large photovoltaic systems using photovoltaic module fault detection/PVMD dataset/PVMD dataset/PVMD dataset/Cracks/C333.jpeg",
+    "true_labels": [
+      "Cracks",
+      "Hotspots",
+      "Shadings"
+    ],
+    "predicted_labels": [
+      "Cracks",
+      "Hotspots",
+      "Shadings"
+    ],
+    "probabilities": {
+      "Cracks": 0.9824114441871643,
+      "Hotspots": 0.9794147610664368,
+      "Shadings": 0.9833335280418396
+    }
+  },
+  {
+    "path": "/content/solarpower_twinAI_iitk/data/raw/model1/Photovoltaic module dataset for automated fault detection and analysis in large photovoltaic systems using photovoltaic module fault detection/PVMD dataset/PVMD dataset/PVMD dataset/Cracks/C168.jpeg",
+    "true_labels": [
+      "Cracks",
+      "Hotspots"
+    ],
+    "predicted_labels": [
+      "Cracks",
+      "Hotspots",
+      "Shadings"
+    ],
+    "probabilities": {
+      "Cracks": 0.9809549450874329,
+      "Hotspots": 0.9673042893409729,
+      "Shadings": 0.6123272776603699
+    }
+  },
+  {
+    "path": "/content/solarpower_twinAI_iitk/data/raw/model1/Photovoltaic module dataset for automated fault detection and analysis in large photovoltaic systems using photovoltaic module fault detection/PVMD dataset/PVMD dataset/PVMD dataset/Cracks/C141.jpeg",
+    "true_labels": [
+      "Cracks",
+      "Hotspots",
+      "Shadings"
+    ],
+    "predicted_labels": [
+      "Cracks",
+      "Hotspots",
+      "Shadings"
+    ],
+    "probabilities": {
+      "Cracks": 0.9339635968208313,
+      "Hotspots": 0.9110437035560608,
+      "Shadings": 0.6520382761955261
+    }
+  }
+]

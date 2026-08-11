@@ -1,16 +1,15 @@
 {
   "task": "multi-label anomaly detection",
   "thresholds": {
-    "Cracks": 0.15,
-    "Hotspots": 0.25,
-    "Shadings": 0.10
+    "Cracks": 0.05,
+    "Hotspots": 0.05,
+    "Shadings": 0.05
   },
-  "selection_method": "per-class F1 optimization on validation groups only",
-  "validation_groups": 32,
-  "test_groups": 40,
-  "test_micro_f1": 0.9279,
-  "test_macro_f1": 0.9224,
-  "baseline_test_micro_f1_at_0_50": 0.8922,
-  "baseline_test_macro_f1_at_0_50": 0.8707,
-  "warning": "Thresholds were selected on a small validation set; re-calibrate when substantially more labelled data becomes available."
+  "validation_f1": {
+    "Cracks": 0.9830508474576272,
+    "Hotspots": 0.9830508474576272,
+    "Shadings": 0.8148148148148148
+  },
+  "selection_method": "per-class F1 optimization on validation set only",
+  "test_set_used_for_threshold_selection": false
 }

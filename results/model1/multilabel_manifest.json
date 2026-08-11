@@ -1,0 +1,15 @@
+{
+  "task": "multi-label anomaly detection",
+  "classes": [
+    "Cracks",
+    "Hotspots",
+    "Shadings"
+  ],
+  "raw_files": 1000,
+  "unique_exact_image_groups": 198,
+  "train_groups": 126,
+  "validation_groups": 32,
+  "test_groups": 40,
+  "split": "80:20 group split; validation only inside training portion",
+  "healthy_class_available": false
+}
